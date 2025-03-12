@@ -6,7 +6,7 @@ export default function TaskDetails() {
 
   return (
     <div>
-      <h1>Task Details</h1>
+      <h1 className="heading">დავალების დეტალები</h1>
       <p>Task ID: {taskId}</p>
     </div>
   );

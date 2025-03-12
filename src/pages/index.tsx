@@ -1,5 +1,6 @@
 import Head from "next/head";
-// import styles from "@/styles/Home.module.css";
+import Filters from "@/features/kanban/Filters";
+import KanbanBoard from "@/features/kanban/KanbanBoard";
 
 export default function HomePage() {
   return (
@@ -7,7 +8,9 @@ export default function HomePage() {
       <Head>
         <title>Momentum - Tasks Page</title>
       </Head>
-      <div>kanban board</div>
+      <h1 className="heading">დავალებების გვერდი</h1>
+      <Filters />
+      <KanbanBoard />
     </>
   );
 }

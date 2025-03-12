@@ -22,3 +22,13 @@ body {
   padding-inline: 16px;
   margin-inline: auto;
 }
+
+main {
+  padding-top: 40px;
+}
+
+.heading {
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 52px;
+}

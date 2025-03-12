@@ -12,6 +12,11 @@ export const firago = localFont({
       weight: "500",
       style: "normal",
     },
+    {
+      path: "./FiraGO-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
   ],
   variable: "--font-firago",
 });
