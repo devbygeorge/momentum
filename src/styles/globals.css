@@ -10,6 +10,7 @@ body {
 }
 
 body {
+  line-height: 1.125;
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-firago);
