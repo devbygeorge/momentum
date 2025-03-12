@@ -1,23 +1,34 @@
 import styles from "./Filters.module.css";
-import ArrowDown from "@/assets/icons/arrow-down.svg";
+import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
+
+import FiltersDropdown from "./FiltersDropdown";
+import db from "@/db.json";
 
 export default function Filters() {
+  const { departments, priorities, employees } = db;
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.tabList}>
         <li className={styles.tabItem}>
           დეპარტამენტი
-          <ArrowDown className={styles.tabItemIcon} />
+          <ArrowDownIcon className={styles.tabItemIcon} />
         </li>
         <li className={styles.tabItem}>
           პრიორიტეტი
-          <ArrowDown className={styles.tabItemIcon} />
+          <ArrowDownIcon className={styles.tabItemIcon} />
         </li>
         <li className={styles.tabItem}>
           თანამშრომელი
-          <ArrowDown className={styles.tabItemIcon} />
+          <ArrowDownIcon className={styles.tabItemIcon} />
         </li>
       </ul>
+
+      <FiltersDropdown data={departments} />
+
+      <FiltersDropdown data={priorities} />
+
+      <FiltersDropdown data={employees} variant="employees" />
     </div>
   );
 }

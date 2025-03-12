@@ -1,0 +1,49 @@
+.dropdownWrapper {
+  background-color: #ffffff;
+  border: 1px solid #8338ec;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  padding: 40px 30px 20px;
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 51px;
+}
+
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  cursor: pointer;
+}
+
+.dropdownEmployeeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dropdownEmployeeAvatar {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dropdownButton {
+  align-self: flex-end;
+}
