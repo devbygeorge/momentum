@@ -33,11 +33,24 @@
 }
 
 /* Secondary Button */
-/* .secondary {
+.secondary {
+  background-color: #8338ec;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 155px;
+  height: 35px;
+
+  padding-block: 8px;
+  border-radius: 20px;
 }
 
 .secondary:hover {
-} */
+  background-color: #b588f4;
+}
 
 /* Outline Button */
 .outline {
