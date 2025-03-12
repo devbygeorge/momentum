@@ -1,0 +1,65 @@
+{
+  "departments": [
+    {
+      "id": 1,
+      "name": "ადმინისტრაციის დეპარტამენტი"
+    },
+    {
+      "id": 2,
+      "name": "ადამიანური რესურსების დეპარტამენტი"
+    },
+    {
+      "id": 3,
+      "name": "ფინანსების დეპარტამენტი"
+    },
+    {
+      "id": 4,
+      "name": "გაყიდვები და მარკეტინგის დეპარტამენტი"
+    },
+    {
+      "id": 5,
+      "name": "ლოჯოსტიკის დეპარტამენტი"
+    },
+    {
+      "id": 6,
+      "name": "ტექნოლოგიების დეპარტამენტი"
+    },
+    {
+      "id": 7,
+      "name": "მედიის დეპარტამენტი"
+    }
+  ],
+  "priorities": [
+    {
+      "id": 1,
+      "name": "დაბალი",
+      "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/Low.svg"
+    },
+    {
+      "id": 2,
+      "name": "საშუალო",
+      "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg"
+    },
+    {
+      "id": 3,
+      "name": "მაღალი",
+      "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/High.svg"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "ლადო",
+      "surname": "გაგა",
+      "avatar": "/temp/avatar-1.png",
+      "department_id": 1
+    },
+    {
+      "id": 2,
+      "name": "გიორგი",
+      "surname": "ნუკრი",
+      "avatar": "/temp/avatar-1.png",
+      "department_id": 2
+    }
+  ]
+}
