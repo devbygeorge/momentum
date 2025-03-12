@@ -1,6 +1,9 @@
 .button {
-  display: inline-block;
-  padding-block: 11px;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+
+  padding-block: 10px;
   padding-inline: 20px;
 
   font-size: 16px;
@@ -40,7 +43,6 @@
 .outline {
   background-color: #ffffff;
   border: 1px solid #8338ec;
-  padding-block: 10px;
 }
 
 .outline:hover {

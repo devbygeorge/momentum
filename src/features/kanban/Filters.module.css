@@ -1,0 +1,48 @@
+.tabList {
+  display: inline-flex;
+  gap: 45px;
+
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+}
+
+.tabItem {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  padding: 10px 18px;
+
+  color: #0d0f10;
+}
+
+.tabItem,
+.tabItemIcon path {
+  transition: all 0.3s ease;
+}
+
+.tabItem:hover {
+  color: #8338ec;
+}
+
+.tabItem:hover .tabItemIcon path {
+  fill: #8338ec;
+}
+
+.tabItemIcon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.dropdown {
+}
+
+.dropdownItem {
+}
+
+.chosen {
+}
+
+.chosenItem {
+}

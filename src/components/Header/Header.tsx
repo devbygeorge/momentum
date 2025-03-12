@@ -2,6 +2,7 @@ import styles from "./Header.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
+import PlusIcon from "@/assets/icons/plus.svg";
 
 export default function Header() {
   return (
@@ -20,7 +21,7 @@ export default function Header() {
           </li>
           <li>
             <Button variant="primary" href="/tasks/create">
-              + შექმენი ახალი დავალება
+              <PlusIcon /> შექმენი ახალი დავალება
             </Button>
           </li>
         </ul>
