@@ -3,7 +3,7 @@ import "@/styles/reset.css";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { firago } from "@/fonts";
+import { firago } from "@/assets/fonts";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
