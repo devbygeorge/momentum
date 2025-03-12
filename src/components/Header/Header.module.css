@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 30px;
+
+  border-bottom: 1px solid black;
+}
+
+.logo a {
+  display: inline-block;
+  position: relative;
+  width: 210px;
+  height: 38px;
+}
+
+.logo img {
+  position: absolute;
+}
+
+.navList {
+  display: flex;
+  gap: 40px;
+}
