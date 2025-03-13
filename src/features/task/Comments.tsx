@@ -3,6 +3,7 @@ import s from "./Comments.module.css";
 import Image from "next/image";
 import ReplyIcon from "@/assets/icons/reply.svg";
 import db from "@/db.json";
+import Textarea from "@/components/Textarea/Textarea";
 
 export default function Comments() {
   const { comments } = db;
@@ -10,11 +11,7 @@ export default function Comments() {
   return (
     <div className={s.wrapper}>
       <form className={s.commentForm} onSubmit={(e) => e.preventDefault()}>
-        <textarea
-          className={s.textarea}
-          placeholder="დაწერე კომენტარი"
-          aria-label="დაწერე კომენტარი"
-        />
+        <Textarea placeholder="დაწერე კომენტარი" />
         <Button
           className={s.commentButton}
           variant="secondary"
