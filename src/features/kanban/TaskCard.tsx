@@ -5,6 +5,7 @@ import CommentsIcon from "@/assets/icons/comments.svg";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/utils/dateUtils";
 import { truncateText } from "@/utils/stringUtils";
+import Link from "next/link";
 
 export default function TaskCard() {
   const [formattedDate, setFormattedDate] = useState("");
@@ -16,7 +17,7 @@ export default function TaskCard() {
   }, [task.due_date]);
 
   return (
-    <div className={s.wrapper}>
+    <Link className={s.wrapper} href={`/tasks/${task.id}`}>
       <header className={s.header}>
         <div className={s.priority}>
           <Image
@@ -50,6 +51,6 @@ export default function TaskCard() {
           {task.total_comments}
         </div>
       </footer>
-    </div>
+    </Link>
   );
 }
