@@ -9,7 +9,7 @@ export default function Header() {
     <header className={`${styles.header} container`}>
       <div className={styles.logo}>
         <Link href="/">
-          <Image src="/logo.svg" alt="Momentum" layout="fill" />
+          <Image src="/logo.svg" alt="Momentum" fill />
         </Link>
       </div>
       <nav>
