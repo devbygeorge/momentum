@@ -74,7 +74,8 @@
   display: grid;
   grid-template-columns: max-content 260px;
   align-items: center;
-  gap: 70px;
+  column-gap: 70px;
+  row-gap: 40px;
 }
 
 .detailsGrid dt {
