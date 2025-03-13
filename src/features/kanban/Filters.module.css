@@ -1,6 +1,7 @@
 .wrapper {
   position: relative;
   display: inline-block;
+  margin-bottom: 24px;
 }
 
 .tabList {
@@ -78,8 +79,41 @@
   align-self: flex-end;
 }
 
-.chosen {
+.chosenWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-weight: 350;
+  font-size: 14px;
+  color: #343a40;
+
+  margin-top: 25px;
+  /* visibility: hidden; */
+}
+
+.chosenList {
+  display: flex;
+  gap: 8px;
 }
 
 .chosenItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 6px 10px;
+  border-radius: 43px;
+  border: 1px solid #ced4da;
+  cursor: pointer;
+}
+
+.chosenItem svg {
+  width: 14px;
+  height: 14px;
+}
+
+.chosenClear {
+  padding: 6px 10px;
+  cursor: pointer;
 }

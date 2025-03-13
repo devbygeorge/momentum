@@ -3,6 +3,11 @@ import localFont from "next/font/local";
 export const firago = localFont({
   src: [
     {
+      path: "./FiraGO-Book.woff2",
+      weight: "350",
+      style: "normal",
+    },
+    {
       path: "./FiraGO-Regular.woff2",
       weight: "400",
       style: "normal",
