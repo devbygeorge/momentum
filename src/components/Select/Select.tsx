@@ -1,5 +1,11 @@
 import s from "./Select.module.css";
 
-export default function Select() {
+type SelectProps = {
+  name: string;
+  required?: boolean;
+};
+
+export default function Select({ name, required }: SelectProps) {
+  console.log(name, required);
   return <div className={s.wrapper}>Component</div>;
 }
