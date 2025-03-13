@@ -10,9 +10,7 @@ export default function CreateTaskForm() {
     <div className={s.wrapper}>
       <form>
         {/* First column */}
-        <fieldset className={s.fieldset}>
-          <legend>დავალების დეტალები</legend>
-
+        <div className={s.column}>
           <div className={s.formGroup}>
             <label htmlFor="title">სათაური*</label>
             <Input type="text" name="title" required />
@@ -27,7 +25,7 @@ export default function CreateTaskForm() {
             <span>მაქსიმუმ 255 სიმბოლო</span>
           </div>
 
-          {/* 2 Selects side by side */}
+          {/* 2 selects side by side */}
           <div className={s.selectGroup}>
             <div>
               <label htmlFor="priority">პრიორიტეტი*</label>
@@ -38,12 +36,10 @@ export default function CreateTaskForm() {
               <Select name="status" required />
             </div>
           </div>
-        </fieldset>
+        </div>
 
         {/* Second column */}
-        <fieldset className={s.fieldset}>
-          <legend>დამატებითი ინფორმაცია</legend>
-
+        <div className={s.column}>
           <div className={s.formGroup}>
             <label htmlFor="department">დეპარტამენტი*</label>
             <Select name="department" required />
@@ -58,7 +54,7 @@ export default function CreateTaskForm() {
           </div>
 
           <Button type="submit">დავალების შექმნა</Button>
-        </fieldset>
+        </div>
       </form>
     </div>
   );
