@@ -1,4 +1,4 @@
-export default function CreateTask() {
+export default function CreateTaskPage() {
   return (
     <div>
       <h1 className="heading">შექმენი ახალი დავალება</h1>

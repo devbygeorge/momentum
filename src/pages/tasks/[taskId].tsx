@@ -1,13 +1,10 @@
 import { useRouter } from "next/router";
+import TaskDetails from "@/features/task/TaskDetails";
 
-export default function TaskDetails() {
+export default function TaskDetailsPage() {
   const router = useRouter();
   const { taskId } = router.query;
+  console.log(taskId);
 
-  return (
-    <div>
-      <h1 className="heading">დავალების დეტალები</h1>
-      <p>Task ID: {taskId}</p>
-    </div>
-  );
+  return <TaskDetails />;
 }
