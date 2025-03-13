@@ -68,7 +68,7 @@ export default function TaskDetails() {
       </article>
 
       {/* Comments Side */}
-      <aside>
+      <aside className={s.aside}>
         <Comments />
       </aside>
     </div>
