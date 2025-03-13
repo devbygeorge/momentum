@@ -1,5 +1,9 @@
-import styles from "./CreateTaskForm.module.css";
+import s from "./CreateTaskForm.module.css";
 
 export default function CreateTaskForm() {
-  return <div className={styles.wrapper}>Component</div>;
+  return (
+    <div className={s.wrapper}>
+      <form> Form </form>
+    </div>
+  );
 }

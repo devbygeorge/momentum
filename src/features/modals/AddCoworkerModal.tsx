@@ -1,5 +1,5 @@
-import styles from "./AddCoworkerModal.module.css";
+import s from "./AddCoworkerModal.module.css";
 
 export default function AddCoworkerModal() {
-  return <div className={styles.wrapper}>Component</div>;
+  return <div className={s.wrapper}>Component</div>;
 }

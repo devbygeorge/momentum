@@ -1,4 +1,4 @@
-import styles from "./Filters.module.css";
+import s from "./Filters.module.css";
 import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
 import CloseIcon from "@/assets/icons/close.svg";
 
@@ -9,19 +9,19 @@ export default function Filters() {
   // const { departments, priorities, employees } = db;
 
   return (
-    <div className={styles.wrapper}>
-      <ul className={styles.tabList}>
-        <li className={styles.tabItem}>
+    <div className={s.wrapper}>
+      <ul className={s.tabList}>
+        <li className={s.tabItem}>
           დეპარტამენტი
-          <ArrowDownIcon className={styles.tabItemIcon} />
+          <ArrowDownIcon className={s.tabItemIcon} />
         </li>
-        <li className={styles.tabItem}>
+        <li className={s.tabItem}>
           პრიორიტეტი
-          <ArrowDownIcon className={styles.tabItemIcon} />
+          <ArrowDownIcon className={s.tabItemIcon} />
         </li>
-        <li className={styles.tabItem}>
+        <li className={s.tabItem}>
           თანამშრომელი
-          <ArrowDownIcon className={styles.tabItemIcon} />
+          <ArrowDownIcon className={s.tabItemIcon} />
         </li>
       </ul>
 
@@ -31,22 +31,22 @@ export default function Filters() {
 
       {/* <FiltersDropdown data={employees} variant="employees" /> */}
 
-      <div className={styles.chosenWrapper}>
-        <ul className={styles.chosenList}>
-          <li className={styles.chosenItem}>
+      <div className={s.chosenWrapper}>
+        <ul className={s.chosenList}>
+          <li className={s.chosenItem}>
             მაღალი
             <CloseIcon />
           </li>
-          <li className={styles.chosenItem}>
+          <li className={s.chosenItem}>
             დიზაინი
             <CloseIcon />
           </li>
-          <li className={styles.chosenItem}>
+          <li className={s.chosenItem}>
             ემილია მორგანი
             <CloseIcon />
           </li>
         </ul>
-        <span className={styles.chosenClear}>გასუფთავება</span>
+        <span className={s.chosenClear}>გასუფთავება</span>
       </div>
     </div>
   );

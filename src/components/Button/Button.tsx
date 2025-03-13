@@ -1,4 +1,4 @@
-import styles from "./Button.module.css";
+import s from "./Button.module.css";
 import Link from "next/link";
 
 type ButtonProps = {
@@ -20,7 +20,7 @@ export default function Button({
   href,
   className,
 }: ButtonProps) {
-  const buttonClass = [styles.button, styles[variant], className]
+  const buttonClass = [s.button, s[variant], className]
     .filter(Boolean)
     .join(" ");
 

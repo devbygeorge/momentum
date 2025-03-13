@@ -1,4 +1,4 @@
-import styles from "./FiltersDropdown.module.css";
+import s from "./FiltersDropdown.module.css";
 import Button from "@/components/Button/Button";
 import CheckboxDefaultIcon from "@/assets/icons/checkbox-default.svg";
 // import CheckboxActiveIcon from "@/assets/icons/checkbox-active.svg";
@@ -23,14 +23,14 @@ export default function FiltersDropdown({
   data,
 }: FiltersDropdownProps) {
   return (
-    <div className={styles.dropdownWrapper}>
-      <ul className={styles.dropdownList}>
+    <div className={s.dropdownWrapper}>
+      <ul className={s.dropdownList}>
         {data?.map((item) => (
-          <li key={item.id} className={styles.dropdownItem}>
+          <li key={item.id} className={s.dropdownItem}>
             <CheckboxDefaultIcon />
             {variant === "employees" ? (
-              <div className={styles.dropdownEmployeeWrapper}>
-                <div className={styles.dropdownEmployeeAvatar}>
+              <div className={s.dropdownEmployeeWrapper}>
+                <div className={s.dropdownEmployeeAvatar}>
                   <Image src={item.avatar || ""} alt="Employee Picture" fill />
                 </div>
                 {item.name} {item.surname}
@@ -42,7 +42,7 @@ export default function FiltersDropdown({
         ))}
       </ul>
 
-      <div className={styles.dropdownButton}>
+      <div className={s.dropdownButton}>
         <Button variant="secondary" onClick={onClick}>
           არჩევა
         </Button>
