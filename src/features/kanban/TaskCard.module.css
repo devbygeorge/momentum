@@ -1,0 +1,95 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  padding: 20px;
+  border-radius: 15px;
+
+  border: 1px solid #fa4d4d;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding-inline: 6px;
+  min-width: 86px;
+  min-height: 26px;
+
+  font-weight: 500;
+  color: #fa4d4d;
+
+  border-radius: 4px;
+  border: 1px solid #fa4d4d;
+}
+
+.department {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-inline: 6px;
+  min-width: 88px;
+  min-height: 24px;
+
+  background-color: #ff66a8;
+  border-radius: 15px;
+
+  color: #ffffff;
+}
+
+.dueDate {
+  margin-left: auto;
+}
+
+.main {
+  padding-inline: 10.5px;
+}
+
+.name {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.description {
+  min-height: 34px;
+  font-size: 14px;
+  color: #343a40;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.totalComments {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 14px;
+}
+
+.totalComments svg {
+  width: 22px;
+  height: 22px;
+}
