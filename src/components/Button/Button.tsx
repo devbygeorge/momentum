@@ -8,6 +8,7 @@ type ButtonProps = {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   href?: string;
+  className?: string;
 };
 
 export default function Button({
@@ -17,11 +18,16 @@ export default function Button({
   type = "button",
   disabled = false,
   href,
+  className,
 }: ButtonProps) {
+  const buttonClass = [styles.button, styles[variant], className]
+    .filter(Boolean)
+    .join(" ");
+
   // If `href` is provided, render a `Link` instead of a `button`
   if (href) {
     return (
-      <Link href={href} className={`${styles.button} ${styles[variant]}`}>
+      <Link href={href} className={buttonClass}>
         {children}
       </Link>
     );
@@ -29,7 +35,7 @@ export default function Button({
 
   return (
     <button
-      className={`${styles.button} ${styles[variant]}`}
+      className={buttonClass}
       onClick={onClick}
       type={type}
       disabled={disabled}
