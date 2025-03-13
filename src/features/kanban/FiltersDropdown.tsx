@@ -31,11 +31,7 @@ export default function FiltersDropdown({
             {variant === "employees" ? (
               <div className={styles.dropdownEmployeeWrapper}>
                 <div className={styles.dropdownEmployeeAvatar}>
-                  <Image
-                    src={item.avatar || ""}
-                    alt="Employee Picture"
-                    layout="fill"
-                  />
+                  <Image src={item.avatar || ""} alt="Employee Picture" fill />
                 </div>
                 {item.name} {item.surname}
               </div>
