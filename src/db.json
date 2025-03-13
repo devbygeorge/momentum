@@ -83,21 +83,65 @@
   "comments": [
     {
       "id": 1,
-      "text": "ეს დავალება საერთიდ არ არის რთული",
+      "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.",
       "task_id": 1,
       "parent_id": null,
-      "author_avatar": "https://api.dicebear.com/9.x/thumbs/svg?seed=127.0.0.1",
-      "author_nickname": "Gela",
+      "author_avatar": "/temp/avatar-1.png",
+      "author_nickname": "ემილია მორგანი",
       "sub_comments": [
         {
-          "id": 2,
-          "text": "ვისთვის როგორ",
+          "id": 1,
+          "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება.",
           "task_id": 1,
           "parent_id": 1,
-          "author_avatar": "https://api.dicebear.com/9.x/thumbs/svg?seed=127.0.0.2",
-          "author_nickname": "Lela"
+          "author_avatar": "/temp/avatar-3.png",
+          "author_nickname": "ნატალია გიორგაძე"
+        },
+        {
+          "id": 2,
+          "text": "ყველაზე მაგარი ნამუშევარია.",
+          "task_id": 1,
+          "parent_id": 1,
+          "author_avatar": "/temp/avatar-2.png",
+          "author_nickname": "ემილია მორგანი"
         }
       ]
+    },
+    {
+      "id": 2,
+      "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.",
+      "task_id": 1,
+      "parent_id": null,
+      "author_avatar": "/temp/avatar-2.png",
+      "author_nickname": "ემილია მორგანი",
+      "sub_comments": null
+    },
+    {
+      "id": 3,
+      "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.",
+      "task_id": 1,
+      "parent_id": null,
+      "author_avatar": "/temp/avatar-2.png",
+      "author_nickname": "ემილია მორგანი",
+      "sub_comments": null
+    },
+    {
+      "id": 5,
+      "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.",
+      "task_id": 1,
+      "parent_id": null,
+      "author_avatar": "/temp/avatar-2.png",
+      "author_nickname": "ემილია მორგანი",
+      "sub_comments": null
+    },
+    {
+      "id": 2,
+      "text": "დიზაინი სუფთად ჩანს, მაგრამ კოდირებისას მნიშვნელოვანი იქნება, რომ ელემენტებს ჰქონდეს შესაბამისი რეზოლუცია.",
+      "task_id": 1,
+      "parent_id": null,
+      "author_avatar": "/temp/avatar-2.png",
+      "author_nickname": "ემილია მორგანი",
+      "sub_comments": null
     }
   ],
   "tasks": [
