@@ -1,10 +1,10 @@
 import s from "./KanbanBoard.module.css";
 import Column from "./Column";
-import db from "@/db.json";
+import { useAppContext } from "@/context/AppContext";
 
 export default function KanbanBoard() {
-  const { statuses } = db;
-
+  const { statuses } = useAppContext();
+  
   return (
     <div className={s.wrapper}>
       {statuses.map((status) => (
