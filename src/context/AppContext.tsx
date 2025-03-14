@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   fetchStatuses,
   fetchPriorities,
@@ -20,47 +21,61 @@ type AppContextType = {
   }[];
   loading: boolean;
   error: string | null;
-  refreshData: () => void;
+  refetch: () => void;
 };
 
 // Create context
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-// Context Provider
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [statuses, setStatuses] = useState([]);
-  const [priorities, setPriorities] = useState([]);
-  const [departments, setDepartments] = useState([]);
-  const [employees, setEmployees] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    data: statuses = [],
+    error: statusError,
+    refetch: refetchStatuses,
+  } = useQuery({
+    queryKey: ["statuses"],
+    queryFn: fetchStatuses,
+  });
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const [statusesData, prioritiesData, departmentsData, employeesData] =
-        await Promise.all([
-          fetchStatuses(),
-          fetchPriorities(),
-          fetchDepartments(),
-          fetchEmployees(),
-        ]);
-      setStatuses(statusesData);
-      setPriorities(prioritiesData);
-      setDepartments(departmentsData);
-      setEmployees(employeesData);
-      setError(null);
-    } catch (err) {
-      setError("Failed to fetch data");
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
+  const {
+    data: priorities = [],
+    error: priorityError,
+    refetch: refetchPriorities,
+  } = useQuery({
+    queryKey: ["priorities"],
+    queryFn: fetchPriorities,
+  });
+
+  const {
+    data: departments = [],
+    error: departmentError,
+    refetch: refetchDepartments,
+  } = useQuery({
+    queryKey: ["departments"],
+    queryFn: fetchDepartments,
+  });
+
+  const {
+    data: employees = [],
+    error: employeeError,
+    refetch: refetchEmployees,
+  } = useQuery({
+    queryKey: ["employees"],
+    queryFn: fetchEmployees,
+  });
+
+  const loading = !statuses || !priorities || !departments || !employees;
+  const error =
+    statusError || priorityError || departmentError || employeeError
+      ? "Failed to fetch data"
+      : null;
+
+  const refetch = () => {
+    refetchStatuses();
+    refetchPriorities();
+    refetchDepartments();
+    refetchEmployees();
   };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <AppContext.Provider
@@ -71,7 +86,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         employees,
         loading,
         error,
-        refreshData: fetchData,
+        refetch,
       }}
     >
       {children}
