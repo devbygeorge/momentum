@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import s from "./Modal.module.css";
+import CancelIcon from "@/assets/icons/cancel.svg";
 
 type ModalProps = {
   isOpen: boolean;
@@ -8,7 +9,12 @@ type ModalProps = {
   title?: string;
 };
 
-export default function Modal({ isOpen, onClose, children, title }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  title,
+}: ModalProps) {
   const [visible, setVisible] = useState(isOpen);
 
   // Handle animation before closing
@@ -44,9 +50,9 @@ export default function Modal({ isOpen, onClose, children, title }: ModalProps) 
         onClick={(e) => e.stopPropagation()}
       >
         <button className={s.closeButton} onClick={onClose} aria-label="Close">
-          ✖
+          <CancelIcon />
         </button>
-        {title && <h2 id="modal-title">{title}</h2>}
+        {title && <h2 id="modal-title" className={s.modalHeading}>{title}</h2>}
         <div className={s.modalContent}>{children}</div>
       </div>
     </div>

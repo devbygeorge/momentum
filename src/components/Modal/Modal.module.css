@@ -53,10 +53,12 @@
 
 .modal {
   background: white;
-  padding: 20px;
+  padding: 40px 50px 60px;
   border-radius: 8px;
-  width: 400px;
   animation: slideIn 0.3s ease-out;
+
+  display: flex;
+  flex-direction: column;
 }
 
 /* Hide Modal Smoothly */
@@ -66,4 +68,21 @@
 
 .modal.hidden {
   animation: slideOut 0.2s ease-in forwards;
+}
+
+.closeButton {
+  display: inline-flex;
+  align-self: flex-end;
+
+  margin-bottom: 37px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modalHeading {
+  align-self: center;
+  margin-bottom: 45px;
+
+  font-size: 32px;
+  font-weight: 500;
 }
