@@ -5,6 +5,9 @@ import Select from "@/components/Select/Select";
 import Button from "@/components/Button/Button";
 import FormGroup from "@/components/FormGroup/FormGroup";
 import AvatarUpload from "@/components/AvatarUpload/AvatarUpload";
+import { useAppContext } from "@/context/AppContext";
+import { Option } from "@/components/Select/Select";
+import { useState } from "react";
 
 type EmployeeModalProps = {
   isOpen: boolean;
@@ -12,6 +15,11 @@ type EmployeeModalProps = {
 };
 
 export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
+  const { departments } = useAppContext();
+  const [selectedDepartment, setSelectedDepartment] = useState<Option | null>(
+    null
+  );
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Employee created!");
@@ -48,7 +56,13 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
         </FormGroup>
 
         <FormGroup label="დეპარტამენტი*" htmlFor="department">
-          <Select name="department" />
+          <Select
+            name="department"
+            options={departments}
+            selected={selectedDepartment}
+            onChange={setSelectedDepartment}
+            required
+          />
         </FormGroup>
 
         <div className={s.buttonsWrapper}>

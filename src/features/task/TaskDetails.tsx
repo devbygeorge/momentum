@@ -6,9 +6,18 @@ import PieChartIcon from "@/assets/icons/pie-chart.svg";
 import UserIcon from "@/assets/icons/user.svg";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import Select from "@/components/Select/Select";
+import { useAppContext } from "@/context/AppContext";
+import { useState } from "react";
+import { Option } from "@/components/Select/Select";
 
 export default function TaskDetails() {
   const task = db.tasks[0];
+  const { statuses } = useAppContext();
+  const [selectedStatus, setSelectedStatus] = useState<Option>(task.status);
+
+  const updateStatus = (option: Option) => {
+    setSelectedStatus(option);
+  };
 
   return (
     <div className={s.wrapper}>
@@ -41,7 +50,12 @@ export default function TaskDetails() {
               სტატუსი
             </dt>
             <dd>
-              <Select name="status" />
+              <Select
+                name="status"
+                options={statuses}
+                selected={selectedStatus}
+                onChange={updateStatus}
+              />
             </dd>
 
             <dt>

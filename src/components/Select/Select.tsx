@@ -2,39 +2,30 @@ import s from "./Select.module.css";
 import { useState } from "react";
 import ArrowDownSmallIcon from "@/assets/icons/arrow-down-small.svg";
 
-type Option = {
-  value: string;
-  label: string;
+export type Option = {
+  id: number;
+  name: string;
+  icon?: string;
 };
 
 type SelectProps = {
   name: string;
+  options: Option[];
+  selected: Option | null;
+  onChange: (option: Option) => void;
   required?: boolean;
-  options?: Option[];
-  selected?: Option | null;
-  onChange?: (option: Option) => void;
 };
-
-const OPTIONS = [
-  { value: "low", label: "Low" },
-  { value: "medium", label: "Medium" },
-  { value: "high", label: "High" },
-];
 
 export default function Select({
   name,
+  options,
+  selected,
+  onChange,
   required,
-}: // options,
-// selected,
-// onChange,
-SelectProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(OPTIONS[0]);
-
+}: SelectProps) {
   console.log(name, required);
-  const onChange = (option: Option) => {
-    setSelected(option);
-  };
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className={s.wrapper}>
@@ -44,23 +35,23 @@ SelectProps) {
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
-        {selected ? selected.label : "Select an option"}
+        {selected ? selected.name : "აირჩიეთ"}
 
         <ArrowDownSmallIcon />
       </button>
 
       {/* Dropdown List */}
       <ul className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""}`}>
-        {OPTIONS.map((option) => (
+        {options.map((option) => (
           <li
-            key={option.value}
+            key={option.id}
             className={s.option}
             onClick={() => {
               onChange(option);
               setIsOpen(false);
             }}
           >
-            {option.label}
+            {option.name}
           </li>
         ))}
       </ul>
