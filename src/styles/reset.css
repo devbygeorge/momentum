@@ -134,3 +134,6 @@ textarea,
 input {
   font: inherit;
 }
+button {
+  color: inherit;
+}

@@ -36,3 +36,41 @@ main {
   font-weight: 600;
   margin-bottom: 52px;
 }
+
+/* Custom Calendar Styles */
+.rdp-root {
+  --rdp-accent-color: #8338ec !important;
+  --rdp-accent-background-color: #8338ec !important;
+  --rdp-day_button-border-radius: 2px !important;
+  --rdp-day_button-width: 32px !important;
+  --rdp-day_button-height: 32px !important;
+  --rdp-day-width: 32px !important;
+  --rdp-day-height: 32px !important;
+
+  --rdp-nav_button-height: auto !important;
+  --rdp-nav_button-width: auto !important;
+  --rdp-nav-height: 24px !important;
+}
+
+.rdp-selected .rdp-day_button {
+  background-color: var(--rdp-accent-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rdp-months {
+  display: block !important;
+  max-width: unset !important;
+}
+
+.rdp-month_grid {
+  margin-inline: auto;
+  margin-top: 22px;
+}
+
+.rdp-month_caption {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #000000;
+}

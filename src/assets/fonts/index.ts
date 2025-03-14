@@ -27,6 +27,11 @@ export const firago = localFont({
       weight: "600",
       style: "normal",
     },
+    {
+      path: "./FiraGO-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
   ],
   variable: "--font-firago",
 });

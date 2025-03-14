@@ -1,0 +1,29 @@
+.calendarWrapper {
+  padding: 16px;
+
+  background: white;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+
+  font-size: 14px;
+  color: #0d0f10;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 16px;
+  margin-top: 22px;
+
+  font-size: 13px;
+  color: #8338ec;
+}
+
+.cancel {
+  background: none;
+  cursor: pointer;
+}
+
+.ok {
+  background: none;
+  cursor: pointer;
+}
