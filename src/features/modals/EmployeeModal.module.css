@@ -8,7 +8,6 @@
 
 .avatarWrapper {
   grid-column: 1/3;
-  border: 1px solid black;
 }
 
 .buttonsWrapper {

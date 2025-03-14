@@ -4,6 +4,7 @@ import Input from "@/components/Input/Input";
 import Select from "@/components/Select/Select";
 import Button from "@/components/Button/Button";
 import FormGroup from "@/components/FormGroup/FormGroup";
+import AvatarUpload from "@/components/AvatarUpload/AvatarUpload";
 
 type EmployeeModalProps = {
   isOpen: boolean;
@@ -43,7 +44,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
           label="ავატარი*"
           htmlFor="avatar"
         >
-          <div>AVATAR</div>
+          <AvatarUpload />
         </FormGroup>
 
         <FormGroup label="დეპარტამენტი*" htmlFor="department">
