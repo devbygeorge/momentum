@@ -3,7 +3,6 @@ import s from "./FormGroup.module.css";
 
 type FormGroupProps = {
   label: string;
-  htmlFor: string;
   children: ReactNode;
   minText?: string;
   maxText?: string;
@@ -12,7 +11,6 @@ type FormGroupProps = {
 
 export default function FormGroup({
   label,
-  htmlFor,
   children,
   minText,
   maxText,
@@ -22,9 +20,7 @@ export default function FormGroup({
 
   return (
     <div className={FormGroupClass}>
-      <label htmlFor={htmlFor} className={s.formLabel}>
-        {label}
-      </label>
+      <label className={s.formLabel}>{label}</label>
       {children}
       {minText && (
         <span className={`${s.formSpan} ${s.formMinLabel}`}>{minText}</span>
