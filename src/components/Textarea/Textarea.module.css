@@ -15,3 +15,15 @@
   font-weight: 350;
   color: #898989;
 }
+
+.light {
+  border-color: #dee2e6;
+
+  font-weight: 300;
+  color: #0d0f10;
+}
+
+.light::placeholder {
+  font-weight: unset;
+  color: #898989;
+}

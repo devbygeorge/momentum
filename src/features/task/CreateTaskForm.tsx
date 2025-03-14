@@ -58,7 +58,7 @@ export default function CreateTaskForm() {
           minText="მინიმუმ 4 სიტყვა"
           maxText="მაქსიმუმ 255 სიმბოლო"
         >
-          <Textarea />
+          <Textarea design="light" />
         </FormGroup>
 
         <FormGroup label="პასუხისმგებელი თანამშრომელი*">
