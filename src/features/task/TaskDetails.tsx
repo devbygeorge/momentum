@@ -5,6 +5,7 @@ import Image from "next/image";
 import PieChartIcon from "@/assets/icons/pie-chart.svg";
 import UserIcon from "@/assets/icons/user.svg";
 import CalendarIcon from "@/assets/icons/calendar.svg";
+import Select from "@/components/Select/Select";
 
 export default function TaskDetails() {
   const task = db.tasks[0];
@@ -39,7 +40,9 @@ export default function TaskDetails() {
               <PieChartIcon />
               სტატუსი
             </dt>
-            <dd>Select status</dd>
+            <dd>
+              <Select name="status" />
+            </dd>
 
             <dt>
               <UserIcon />
