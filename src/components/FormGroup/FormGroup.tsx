@@ -22,10 +22,14 @@ export default function FormGroup({
 
   return (
     <div className={FormGroupClass}>
-      <label htmlFor={htmlFor}>{label}</label>
+      <label htmlFor={htmlFor} className={s.formLabel}>
+        {label}
+      </label>
       {children}
-      {minText && <span className={s.formMinLabel}>{minText}</span>}
-      {maxText && <span>{maxText}</span>}
+      {minText && (
+        <span className={`${s.formSpan} ${s.formMinLabel}`}>{minText}</span>
+      )}
+      {maxText && <span className={s.formSpan}>{maxText}</span>}
     </div>
   );
 }

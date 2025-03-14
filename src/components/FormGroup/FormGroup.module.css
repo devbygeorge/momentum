@@ -3,12 +3,12 @@
   flex-direction: column;
 }
 
-.formGroup label {
+.formLabel {
   color: #343a40;
   margin-bottom: 6px;
 }
 
-.formGroup span {
+.formSpan {
   font-size: 10px;
   font-weight: 350;
   color: #6c757d;
