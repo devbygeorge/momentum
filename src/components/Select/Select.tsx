@@ -1,5 +1,6 @@
 import s from "./Select.module.css";
 import { useState } from "react";
+import ArrowDownSmallIcon from "@/assets/icons/arrow-down-small.svg";
 
 type Option = {
   value: string;
@@ -14,6 +15,12 @@ type SelectProps = {
   onChange?: (option: Option) => void;
 };
 
+const OPTIONS = [
+  { value: "low", label: "Low" },
+  { value: "medium", label: "Medium" },
+  { value: "high", label: "High" },
+];
+
 export default function Select({
   name,
   required,
@@ -22,46 +29,41 @@ export default function Select({
 // onChange,
 SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(OPTIONS[0]);
 
   console.log(name, required);
-  const selected = { value: "low", label: "Low" };
   const onChange = (option: Option) => {
-    console.log(option);
+    setSelected(option);
   };
-  const options = [
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
-  ];
 
   return (
     <div className={s.wrapper}>
       {/* Select Button */}
       <button
-        className={s.button}
+        className={`${s.button} ${isOpen ? s.isButtonOpen : ""}`}
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
         {selected ? selected.label : "Select an option"}
+
+        <ArrowDownSmallIcon />
       </button>
 
       {/* Dropdown List */}
-      {isOpen && (
-        <ul className={s.dropdown}>
-          {options.map((option) => (
-            <li
-              key={option.value}
-              className={s.option}
-              onClick={() => {
-                onChange(option);
-                setIsOpen(false);
-              }}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""}`}>
+        {OPTIONS.map((option) => (
+          <li
+            key={option.value}
+            className={s.option}
+            onClick={() => {
+              onChange(option);
+              setIsOpen(false);
+            }}
+          >
+            {option.label}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
