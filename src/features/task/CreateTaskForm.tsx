@@ -24,7 +24,7 @@ export default function CreateTaskForm() {
         <div className={s.formGroup}>
           <label htmlFor="description">აღწერა</label>
           <Textarea name="description" />
-          <span className={s.formMinLabel}>მინიმუმ 2 სიმბოლო</span>
+          <span className={s.formMinLabel}>მინიმუმ 4 სიტყვა</span>
           <span>მაქსიმუმ 255 სიმბოლო</span>
         </div>
 
