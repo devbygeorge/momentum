@@ -3,8 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
 import PlusIcon from "@/assets/icons/plus.svg";
+import { useState } from "react";
+import EmployeeModal from "@/features/modals/EmployeeModal";
 
 export default function Header() {
+  const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
+
   return (
     <header className={`${s.header} container`}>
       <div className={s.logo}>
@@ -15,7 +19,10 @@ export default function Header() {
       <nav>
         <ul className={s.navList}>
           <li>
-            <Button variant="outline" onClick={() => alert("Clicked!")}>
+            <Button
+              variant="outline"
+              onClick={() => setIsEmployeeModalOpen(true)}
+            >
               თანამშრომლის შექმნა
             </Button>
           </li>
@@ -26,6 +33,11 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+
+      <EmployeeModal
+        isOpen={isEmployeeModalOpen}
+        onClose={() => setIsEmployeeModalOpen(false)}
+      />
     </header>
   );
 }
