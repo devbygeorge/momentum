@@ -7,6 +7,7 @@ import Image from "next/image";
 type FiltersDropdownProps = {
   variant?: "primary" | "employees";
   onClick?: () => void;
+  selectMode: "single" | "multi";
   data: {
     id: number;
     name: string;

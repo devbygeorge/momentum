@@ -1,35 +1,56 @@
 import s from "./Filters.module.css";
 import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
 import CloseIcon from "@/assets/icons/close.svg";
+import { useAppContext } from "@/context/AppContext";
 
-// import FiltersDropdown from "./FiltersDropdown";
-// import db from "@/db.json";
+import FiltersDropdown from "./FiltersDropdown";
+import { useState } from "react";
+
+type DropdownType = "departments" | "priorities" | "employees";
 
 export default function Filters() {
-  // const { departments, priorities, employees } = db;
+  const [activeDropdown, setActiveDropdown] = useState<DropdownType | null>(
+    null
+  );
+
+  const { departments, priorities, employees } = useAppContext();
+
+  const toggleDropdown = (type: DropdownType) => {
+    setActiveDropdown((prevState) => (prevState === type ? null : type));
+  };
 
   return (
     <div className={s.wrapper}>
       <ul className={s.tabList}>
-        <li className={s.tabItem}>
+        <li className={s.tabItem} onClick={() => toggleDropdown("departments")}>
           დეპარტამენტი
           <ArrowDownIcon className={s.tabItemIcon} />
         </li>
-        <li className={s.tabItem}>
+        <li className={s.tabItem} onClick={() => toggleDropdown("priorities")}>
           პრიორიტეტი
           <ArrowDownIcon className={s.tabItemIcon} />
         </li>
-        <li className={s.tabItem}>
+        <li className={s.tabItem} onClick={() => toggleDropdown("employees")}>
           თანამშრომელი
           <ArrowDownIcon className={s.tabItemIcon} />
         </li>
       </ul>
 
-      {/* <FiltersDropdown data={departments} /> */}
+      {activeDropdown === "departments" && (
+        <FiltersDropdown data={departments} selectMode="single" />
+      )}
 
-      {/* <FiltersDropdown data={priorities} /> */}
+      {activeDropdown === "priorities" && (
+        <FiltersDropdown data={priorities} selectMode="multi" />
+      )}
 
-      {/* <FiltersDropdown data={employees} variant="employees" /> */}
+      {activeDropdown === "employees" && (
+        <FiltersDropdown
+          data={employees}
+          selectMode="multi"
+          variant="employees"
+        />
+      )}
 
       <div className={s.chosenWrapper}>
         <ul className={s.chosenList}>
