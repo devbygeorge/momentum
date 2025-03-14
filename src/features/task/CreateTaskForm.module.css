@@ -21,26 +21,6 @@
   margin-top: 84px;
 }
 
-.formGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.formGroup label {
-  color: #343a40;
-  margin-bottom: 6px;
-}
-
-.formGroup span {
-  font-size: 10px;
-  font-weight: 350;
-  color: #6c757d;
-}
-
-.formMinLabel {
-  margin-block: 4px 2px;
-}
-
 .selectGroup {
   display: grid;
   grid-template-columns: 1fr 1fr;

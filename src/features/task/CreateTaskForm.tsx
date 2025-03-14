@@ -4,50 +4,51 @@ import Textarea from "@/components/Textarea/Textarea";
 import Select from "@/components/Select/Select";
 import DatePicker from "@/components/DatePicker/DatePicker";
 import Button from "@/components/Button/Button";
+import FormGroup from "@/components/FormGroup/FormGroup";
 
 export default function CreateTaskForm() {
   return (
     <div className={s.wrapper}>
       <form className={s.form} onSubmit={(e) => e.preventDefault()}>
-        <div className={s.formGroup}>
-          <label htmlFor="title">სათაური*</label>
+        <FormGroup
+          label="სათაური*"
+          htmlFor="title"
+          minText="მინიმუმ 2 სიმბოლო"
+          maxText="მაქსიმუმ 255 სიმბოლო"
+        >
           <Input type="text" name="title" required />
-          <span className={s.formMinLabel}>მინიმუმ 2 სიმბოლო</span>
-          <span>მაქსიმუმ 255 სიმბოლო</span>
-        </div>
+        </FormGroup>
 
-        <div className={s.formGroup}>
-          <label htmlFor="department">დეპარტამენტი*</label>
+        <FormGroup label="დეპარტამენტი*" htmlFor="department">
           <Select name="department" required />
-        </div>
+        </FormGroup>
 
-        <div className={s.formGroup}>
-          <label htmlFor="description">აღწერა</label>
+        <FormGroup
+          label="აღწერა"
+          htmlFor="description"
+          minText="მინიმუმ 4 სიტყვა"
+          maxText="მაქსიმუმ 255 სიმბოლო"
+        >
           <Textarea name="description" />
-          <span className={s.formMinLabel}>მინიმუმ 4 სიტყვა</span>
-          <span>მაქსიმუმ 255 სიმბოლო</span>
-        </div>
+        </FormGroup>
 
-        <div className={s.formGroup}>
-          <label htmlFor="employee">პასუხისმგებელი თანამშრომელი*</label>
+        <FormGroup label="პასუხისმგებელი თანამშრომელი*" htmlFor="employee">
           <Select name="employee" required />
-        </div>
+        </FormGroup>
 
         <div className={s.selectGroup}>
-          <div className={s.formGroup}>
-            <label htmlFor="priority">პრიორიტეტი*</label>
+          <FormGroup label="პრიორიტეტი*" htmlFor="priority">
             <Select name="priority" required />
-          </div>
-          <div className={s.formGroup}>
-            <label htmlFor="status">სტატუსი*</label>
+          </FormGroup>
+
+          <FormGroup label="სტატუსი*" htmlFor="status">
             <Select name="status" required />
-          </div>
+          </FormGroup>
         </div>
 
-        <div className={s.formGroup}>
-          <label htmlFor="deadline">დედლაინი*</label>
+        <FormGroup label="დედლაინი*" htmlFor="status">
           <DatePicker name="deadline" />
-        </div>
+        </FormGroup>
 
         <Button className={s.formButton} type="submit">
           დავალების შექმნა
