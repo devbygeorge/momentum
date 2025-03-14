@@ -45,7 +45,7 @@ export default function CreateTaskForm() {
         </div>
 
         <div className={s.formGroup}>
-          <label htmlFor="deadline">დედლაინი</label>
+          <label htmlFor="deadline">დედლაინი*</label>
           <DatePicker name="deadline" />
         </div>
 
