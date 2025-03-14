@@ -2,6 +2,8 @@ import s from "./Select.module.css";
 import { useEffect, useRef, useState } from "react";
 import ArrowDownSmallIcon from "@/assets/icons/arrow-down-small.svg";
 import AddIcon from "@/assets/icons/add.svg";
+import { useModal } from "@/context/ModalContext";
+import Image from "next/image";
 
 export type Option = {
   id: number;
@@ -32,6 +34,8 @@ export default function Select({
   const [isOpen, setIsOpen] = useState(false);
   const selectRef = useRef<HTMLDivElement>(null);
 
+  const { openModal } = useModal();
+
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -61,7 +65,18 @@ export default function Select({
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
-        {selected ? selected.name : "აირჩიეთ"}
+        {mode === "priority" && (
+          <Image
+            src={selected?.icon || ""}
+            alt={selected?.name || ""}
+            width={16}
+            height={18}
+          />
+        )}
+
+        <span className={s.buttonText}>
+          {selected ? selected.name : "აირჩიეთ"}
+        </span>
 
         <ArrowDownSmallIcon />
       </button>
@@ -69,7 +84,10 @@ export default function Select({
       {/* Dropdown List */}
       <ul className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""}`}>
         {mode === "employee" && (
-          <li className={`${s.option} ${s.addOption}`}>
+          <li
+            className={`${s.option} ${s.addOption}`}
+            onClick={() => openModal("employee")}
+          >
             <AddIcon />
             დაამატე თანამშრომელი
           </li>
@@ -83,6 +101,14 @@ export default function Select({
               setIsOpen(false);
             }}
           >
+            {mode === "priority" && (
+              <Image
+                src={option.icon || ""}
+                alt={option.name}
+                width={16}
+                height={18}
+              />
+            )}
             {option.name}
           </li>
         ))}

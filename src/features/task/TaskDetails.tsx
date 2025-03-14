@@ -51,7 +51,6 @@ export default function TaskDetails() {
             </dt>
             <dd>
               <Select
-                name="status"
                 options={statuses}
                 selected={selectedStatus}
                 onChange={updateStatus}

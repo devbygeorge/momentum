@@ -25,6 +25,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 6px;
+}
+
+.buttonText {
+  flex: 1;
 }
 
 .button svg {
@@ -67,6 +72,7 @@
 .option {
   display: flex;
   align-items: center;
+  gap: 6px;
 
   height: 45px;
   padding-inline: 14px;

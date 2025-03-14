@@ -31,37 +31,29 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
       <form className={s.form} onSubmit={handleSubmit}>
         <FormGroup
           label="სახელი*"
-          htmlFor="first-name"
           minText="მინიმუმ 2 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
         >
-          <Input type="text" name="first-name" required />
+          <Input type="text" />
         </FormGroup>
 
         <FormGroup
           label="გვარი*"
-          htmlFor="last-name"
           minText="მინიმუმ 2 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
         >
-          <Input type="text" name="last-name" required />
+          <Input type="text" />
         </FormGroup>
 
-        <FormGroup
-          className={s.avatarWrapper}
-          label="ავატარი*"
-          htmlFor="avatar"
-        >
+        <FormGroup className={s.avatarWrapper} label="ავატარი*">
           <AvatarUpload />
         </FormGroup>
 
-        <FormGroup label="დეპარტამენტი*" htmlFor="department">
+        <FormGroup label="დეპარტამენტი*">
           <Select
-            name="department"
             options={departments}
             selected={selectedDepartment}
             onChange={setSelectedDepartment}
-            required
           />
         </FormGroup>
 
