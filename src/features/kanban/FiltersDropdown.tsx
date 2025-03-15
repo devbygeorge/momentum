@@ -13,7 +13,9 @@ type FiltersDropdownProps = {
     name: string;
     surname?: string;
     avatar?: string;
-    department_id?: number;
+    department?: {
+      id?: number;
+    };
     icon?: string;
   }[];
 };

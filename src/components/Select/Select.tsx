@@ -11,7 +11,9 @@ export type Option = {
   icon?: string;
   surname?: string;
   avatar?: string;
-  department_id?: number;
+  department?: {
+    id?: number;
+  };
 };
 
 type SelectProps = {

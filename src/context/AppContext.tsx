@@ -17,7 +17,9 @@ type AppContextType = {
     name: string;
     surname: string;
     avatar: string;
-    department_id: number;
+    department: {
+      id: number;
+    };
   }[];
   loading: boolean;
   error: string | null;

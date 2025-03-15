@@ -103,7 +103,7 @@ export default function CreateTaskForm() {
   };
 
   const filteredEmployees = employees?.filter(
-    (employee) => employee.department_id === formData.department?.id
+    (employee) => employee?.department?.id === formData.department?.id
   );
 
   // Load saved form data from localStorage on mount
