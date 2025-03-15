@@ -7,22 +7,15 @@ import Button from "@/components/Button/Button";
 import FormGroup from "@/components/FormGroup/FormGroup";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
-import { Option } from "@/components/Select/Select";
 import { addDays } from "date-fns";
 import { validateField } from "@/utils/validation";
+import { SelectOption } from "@/types";
 
-const FORM_STORAGE_KEY = "employeeFormData";
-
-const defaultStatus = {
-  id: 1,
-  name: "დასაწყები",
-};
-
-const defaultPriority = {
-  id: 2,
-  name: "საშუალო",
-  icon: "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg",
-};
+import {
+  FORM_STORAGE_KEY,
+  DEFAULT_STATUS,
+  DEFAULT_PRIORITY,
+} from "@/constants";
 
 export default function CreateTaskForm() {
   const { statuses, departments, priorities, employees } = useAppContext();
@@ -32,10 +25,10 @@ export default function CreateTaskForm() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    status: defaultStatus as Option | null,
-    priority: defaultPriority as Option | null,
-    employee: null as Option | null,
-    department: null as Option | null,
+    status: DEFAULT_STATUS,
+    priority: DEFAULT_PRIORITY,
+    employee: null as SelectOption | null,
+    department: null as SelectOption | null,
     date: nextDay,
   });
 
@@ -45,7 +38,7 @@ export default function CreateTaskForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSelectChange = (select: string, option: Option) => {
+  const handleSelectChange = (select: string, option: SelectOption) => {
     if (select === "department" && option.id !== formData?.department?.id) {
       setFormData({ ...formData, [select]: option, employee: null });
     } else {
@@ -81,8 +74,8 @@ export default function CreateTaskForm() {
       setFormData({
         title: "",
         description: "",
-        status: defaultStatus,
-        priority: defaultPriority,
+        status: DEFAULT_STATUS,
+        priority: DEFAULT_PRIORITY,
         employee: null,
         department: null,
         date: nextDay,

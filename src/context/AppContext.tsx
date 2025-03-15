@@ -6,21 +6,14 @@ import {
   fetchDepartments,
   fetchEmployees,
 } from "@/services/api";
+import { Department, Employee, Priority, Status } from "@/types";
 
 // Define the shape of the context data
 type AppContextType = {
-  statuses: { id: number; name: string }[];
-  priorities: { id: number; name: string; icon: string }[];
-  departments: { id: number; name: string }[];
-  employees: {
-    id: number;
-    name: string;
-    surname: string;
-    avatar: string;
-    department: {
-      id: number;
-    };
-  }[];
+  statuses: Status[];
+  priorities: Priority[];
+  departments: Department[];
+  employees: Employee[];
   loading: boolean;
   error: string | null;
   refetch: () => void;

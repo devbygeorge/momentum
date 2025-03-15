@@ -4,23 +4,13 @@ import ArrowDownSmallIcon from "@/assets/icons/arrow-down-small.svg";
 import AddIcon from "@/assets/icons/add.svg";
 import { useModal } from "@/context/ModalContext";
 import Image from "next/image";
-
-export type Option = {
-  id: number;
-  name: string;
-  icon?: string;
-  surname?: string;
-  avatar?: string;
-  department?: {
-    id?: number;
-  };
-};
+import { SelectOption } from "@/types";
 
 type SelectProps = {
   mode?: "default" | "employee" | "priority";
-  options: Option[];
-  selected: Option | null;
-  onChange: (option: Option) => void;
+  options: SelectOption[];
+  selected: SelectOption | null;
+  onChange: (option: SelectOption) => void;
   isDisabled?: boolean;
   hasError?: boolean;
 };

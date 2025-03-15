@@ -19,7 +19,10 @@ export type Employee = {
   name: string;
   surname: string;
   avatar: string;
-  department_id: number;
+  department: {
+    id: number;
+    name: string;
+  };
 };
 
 export type Comment = {
@@ -61,4 +64,15 @@ export type Task = {
     icon: string;
   };
   total_comments: number;
+};
+
+export type SelectOption = {
+  id: number;
+  name: string;
+  surname?: string;
+  avatar?: string;
+  department?: {
+    id?: number;
+  };
+  icon?: string;
 };

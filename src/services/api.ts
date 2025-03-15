@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const API_BASE_URL = "https://momentum.redberryinternship.ge/api";
-const PERSONAL_TOKEN = "9e6e252e-744a-4149-9fd3-6bb4a9e728c3";
+import { API_BASE_URL, PERSONAL_TOKEN } from "@/constants";
 
 const api = axios.create({
   baseURL: API_BASE_URL,

@@ -3,21 +3,13 @@ import Button from "@/components/Button/Button";
 import CheckboxDefaultIcon from "@/assets/icons/checkbox-default.svg";
 // import CheckboxActiveIcon from "@/assets/icons/checkbox-active.svg";
 import Image from "next/image";
+import { SelectOption } from "@/types";
 
 type FiltersDropdownProps = {
   variant?: "primary" | "employees";
   onClick?: () => void;
   selectMode: "single" | "multi";
-  data: {
-    id: number;
-    name: string;
-    surname?: string;
-    avatar?: string;
-    department?: {
-      id?: number;
-    };
-    icon?: string;
-  }[];
+  data: SelectOption[];
 };
 
 export default function FiltersDropdown({

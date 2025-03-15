@@ -7,10 +7,10 @@ import CalendarIcon from "@/assets/icons/calendar.svg";
 import Select from "@/components/Select/Select";
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
-import { Option } from "@/components/Select/Select";
 import { fetchTask } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { formatDate } from "@/utils/dateUtils";
+import { SelectOption } from "@/types";
 
 type TaskDetailsTypes = {
   taskId: string | string[] | undefined;
@@ -23,10 +23,10 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
   });
 
   const { statuses } = useAppContext();
-  const [selectedStatus, setSelectedStatus] = useState<Option | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<SelectOption | null>(null);
   const [avatarSrc, setAvatarSrc] = useState("");
 
-  const updateStatus = (option: Option) => {
+  const updateStatus = (option: SelectOption) => {
     setSelectedStatus(option);
   };
 
