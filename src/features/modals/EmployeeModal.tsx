@@ -34,7 +34,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
           minText="მინიმუმ 2 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
         >
-          <Input type="text" />
+          <Input type="text" value="" onChange={() => {}} />
         </FormGroup>
 
         <FormGroup
@@ -42,7 +42,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
           minText="მინიმუმ 2 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
         >
-          <Input type="text" />
+          <Input type="text" value="" onChange={() => {}} />
         </FormGroup>
 
         <FormGroup className={s.avatarWrapper} label="ავატარი*">
