@@ -12,6 +12,10 @@
   color: #0d0f10;
 }
 
-.textarea::placeholder {
+.input::placeholder {
   color: #898989;
+}
+
+.error {
+  border-color: #fa4d4d;
 }

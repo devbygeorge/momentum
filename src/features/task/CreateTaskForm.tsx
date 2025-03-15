@@ -8,6 +8,8 @@ import FormGroup from "@/components/FormGroup/FormGroup";
 import { useAppContext } from "@/context/AppContext";
 import { useState } from "react";
 import { Option } from "@/components/Select/Select";
+import { addDays } from "date-fns";
+import { validateField } from "@/utils/validation";
 
 const defaultStatus = {
   id: 1,
@@ -23,33 +25,92 @@ const defaultPriority = {
 export default function CreateTaskForm() {
   const { statuses, departments, priorities, employees } = useAppContext();
 
-  const [selectedStatus, setSelectedStatus] = useState<Option | null>(
-    defaultStatus
-  );
-  const [selectedPriority, setSelectedPriority] = useState<Option | null>(
-    defaultPriority
-  );
-  const [selectedEmployee, setSelectedEmployee] = useState<Option | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState<Option | null>(
-    null
-  );
+  const nextDay = addDays(new Date(), 1);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    status: defaultStatus as Option | null,
+    priority: defaultPriority as Option | null,
+    employee: {
+      id: 41,
+      name: "John",
+      surname: "Doe",
+      avatar: "/temp/avatar-3.png",
+      department_id: 5,
+    } as Option | null,
+    department: null as Option | null,
+    date: nextDay,
+  });
+
+  const [validateOnSubmit, setValidateOnSubmit] = useState(false);
+
+  const handleChange = (name: string, value: string) => {
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSelectChange = (select: string, option: Option) => {
+    setFormData({ ...formData, [select]: option });
+  };
+
+  const handleDateChange = (date: Date) => {
+    setFormData({ ...formData, date });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!formData.title || !formData.department || !formData.employee) {
+      setValidateOnSubmit(true);
+      return;
+    }
+
+    if (
+      validationErrors.title ||
+      validationErrors.description ||
+      validationErrors.department ||
+      validationErrors.employee
+    )
+      return;
+  };
+
+  const reqs = {
+    title: validateField(formData.title, 2, 255, undefined, validateOnSubmit),
+    description: validateField(formData.description, 4, 255, 4), // Min 4 words
+  };
+
+  const validationErrors = {
+    title: !reqs.title.fullReqs && reqs.title.validate,
+    description: !reqs.description.fullReqs && reqs.description.validate,
+    department: !formData.department && validateOnSubmit,
+    employee: !formData.employee && validateOnSubmit,
+  };
 
   return (
     <div className={s.wrapper}>
-      <form className={s.form} onSubmit={(e) => e.preventDefault()}>
+      <form className={s.form} onSubmit={handleSubmit}>
         <FormGroup
           label="სათაური*"
           minText="მინიმუმ 2 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
+          minError={!reqs.title.minReqs}
+          maxError={!reqs.title.maxReqs}
+          validate={reqs.title.validate}
         >
-          <Input type="text" />
+          <Input
+            type="text"
+            value={formData.title}
+            onChange={(value) => handleChange("title", value)}
+            hasError={validationErrors.title}
+          />
         </FormGroup>
 
         <FormGroup label="დეპარტამენტი*">
           <Select
             options={departments}
-            selected={selectedDepartment}
-            onChange={setSelectedDepartment}
+            selected={formData.department}
+            onChange={(option) => handleSelectChange("department", option)}
+            hasError={validationErrors.department}
           />
         </FormGroup>
 
@@ -57,17 +118,26 @@ export default function CreateTaskForm() {
           label="აღწერა"
           minText="მინიმუმ 4 სიტყვა"
           maxText="მაქსიმუმ 255 სიმბოლო"
+          minError={!reqs.description.minReqs}
+          maxError={!reqs.description.maxReqs}
+          validate={reqs.description.validate}
         >
-          <Textarea design="light" />
+          <Textarea
+            design="light"
+            value={formData.description}
+            onChange={(value) => handleChange("description", value)}
+            hasError={validationErrors.description}
+          />
         </FormGroup>
 
         <FormGroup label="პასუხისმგებელი თანამშრომელი*">
           <Select
             mode="employee"
             options={employees}
-            selected={selectedEmployee}
-            onChange={setSelectedEmployee}
-            isDisabled={!selectedDepartment}
+            selected={formData.employee}
+            onChange={(option) => handleSelectChange("employee", option)}
+            isDisabled={!formData.department}
+            hasError={validationErrors.employee}
           />
         </FormGroup>
 
@@ -76,22 +146,25 @@ export default function CreateTaskForm() {
             <Select
               mode="priority"
               options={priorities}
-              selected={selectedPriority}
-              onChange={setSelectedPriority}
+              selected={formData.priority}
+              onChange={(option) => handleSelectChange("priority", option)}
             />
           </FormGroup>
 
           <FormGroup label="სტატუსი*">
             <Select
               options={statuses}
-              selected={selectedStatus}
-              onChange={setSelectedStatus}
+              selected={formData.status}
+              onChange={(option) => handleSelectChange("status", option)}
             />
           </FormGroup>
         </div>
 
         <FormGroup label="დედლაინი*">
-          <DatePicker name="deadline" />
+          <DatePicker
+            selectedDate={formData.date}
+            onChange={handleDateChange}
+          />
         </FormGroup>
 
         <Button className={s.formButton} type="submit">

@@ -3,13 +3,26 @@ import s from "./Textarea.module.css";
 type TextareaProps = {
   placeholder?: string;
   design?: "default" | "light";
+  value: string;
+  onChange: (value: string) => void;
+  hasError?: boolean;
 };
 
-export default function Textarea({ placeholder, design }: TextareaProps) {
+export default function Textarea({
+  placeholder,
+  design,
+  value,
+  onChange,
+  hasError,
+}: TextareaProps) {
   return (
     <textarea
-      className={`${s.textarea} ${design === "light" ? s.light : ""}`}
+      className={`${s.textarea} ${design === "light" ? s.light : ""} ${
+        hasError ? s.error : ""
+      }`}
       placeholder={placeholder}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 }

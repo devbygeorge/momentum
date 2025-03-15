@@ -2,21 +2,21 @@ import { useState } from "react";
 import CalendarIconSmall from "@/assets/icons/calendar-small.svg";
 import s from "./DatePicker.module.css";
 import CustomCalendar from "./CustomCalendar";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 
 type DatePickerProps = {
-  name: string;
+  selectedDate: Date;
+  onChange: (date: Date) => void;
 };
 
-export default function DatePicker({ name }: DatePickerProps) {
+export default function DatePicker({
+  selectedDate,
+  onChange,
+}: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const nextDay = addDays(new Date(), 1);
-
-  const [selectedDate, setSelectedDate] = useState<Date>(nextDay);
-
   const handleDateChange = (date: Date) => {
-    setSelectedDate(date);
+    onChange(date);
     setIsOpen(false); // Close the datepicker after selection
   };
 
@@ -30,7 +30,6 @@ export default function DatePicker({ name }: DatePickerProps) {
         <CalendarIconSmall />
         <input
           type="text"
-          name={name}
           placeholder="DD/MM/YYYY"
           value={selectedDate ? format(selectedDate, "dd/MM/yyyy") : ""}
           readOnly
@@ -44,7 +43,6 @@ export default function DatePicker({ name }: DatePickerProps) {
             onClose={() => setIsOpen(false)}
             onChange={handleDateChange}
             selectedDate={selectedDate}
-            nextDay={nextDay}
           />
         </div>
       )}

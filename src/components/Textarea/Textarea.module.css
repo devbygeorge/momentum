@@ -27,3 +27,7 @@
   font-weight: unset;
   color: #898989;
 }
+
+.error {
+  border-color: #fa4d4d;
+}

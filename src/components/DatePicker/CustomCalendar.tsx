@@ -8,12 +8,10 @@ import { customWeekdays, georgianMonths } from "@/utils/calendarConfig";
 export default function CustomCalendar({
   onChange,
   selectedDate,
-  nextDay,
   onClose, // Add a function to close the calendar
 }: {
   onChange: (date: Date) => void;
   selectedDate: Date;
-  nextDay: Date;
   onClose: () => void; // New prop to handle closing
 }) {
   const [tempDate, setTempDate] = useState<Date>(selectedDate);
@@ -25,7 +23,7 @@ export default function CustomCalendar({
         mode="single"
         selected={tempDate}
         onSelect={setTempDate} // Temporarily store the selected date
-        disabled={{ before: nextDay }}
+        disabled={{ before: selectedDate }}
         month={month}
         onMonthChange={setMonth}
         showOutsideDays

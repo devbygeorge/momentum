@@ -17,3 +17,11 @@
 .formMinLabel {
   margin-block: 4px 2px;
 }
+
+.error {
+  color: #fa4d4d;
+}
+
+.success {
+  color: #08a508;
+}
