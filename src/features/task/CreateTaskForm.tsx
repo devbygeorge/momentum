@@ -45,10 +45,10 @@ export default function CreateTaskForm() {
 
   const handleSelectChange = (select: string, option: Option) => {
     if (select === "department" && option.id !== formData?.department?.id) {
-      setFormData({ ...formData, department: option, employee: null });
+      setFormData({ ...formData, [select]: option, employee: null });
+    } else {
+      setFormData({ ...formData, [select]: option });
     }
-
-    setFormData({ ...formData, [select]: option });
   };
 
   const handleDateChange = (date: Date) => {
