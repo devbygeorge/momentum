@@ -32,13 +32,7 @@ export default function CreateTaskForm() {
     description: "",
     status: defaultStatus as Option | null,
     priority: defaultPriority as Option | null,
-    employee: {
-      id: 41,
-      name: "John",
-      surname: "Doe",
-      avatar: "/temp/avatar-3.png",
-      department_id: 5,
-    } as Option | null,
+    employee: null as Option | null,
     department: null as Option | null,
     date: nextDay,
   });
@@ -85,6 +79,10 @@ export default function CreateTaskForm() {
     department: !formData.department && validateOnSubmit,
     employee: !formData.employee && validateOnSubmit,
   };
+
+  const filteredEmployees = employees?.filter(
+    (employee) => employee.department_id === formData.department?.id
+  );
 
   return (
     <div className={s.wrapper}>
@@ -133,7 +131,7 @@ export default function CreateTaskForm() {
         <FormGroup label="პასუხისმგებელი თანამშრომელი*">
           <Select
             mode="employee"
-            options={employees}
+            options={filteredEmployees}
             selected={formData.employee}
             onChange={(option) => handleSelectChange("employee", option)}
             isDisabled={!formData.department}
