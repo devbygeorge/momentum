@@ -4,13 +4,24 @@ import s from "./AvatarUpload.module.css";
 import TrashIcon from "@/assets/icons/trash.svg";
 import GalleryIcon from "@/assets/icons/gallery.svg";
 
-export default function AvatarUpload() {
+type AvatarUploadProps = {
+  setAvatarFile: (file: File | null) => void;
+  hasError?: boolean;
+};
+
+export default function AvatarUpload({
+  setAvatarFile,
+  hasError,
+}: AvatarUploadProps) {
   const [avatar, setAvatar] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null); // Reference for input reset
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+
+      setAvatarFile(file);
+
       setAvatar(URL.createObjectURL(file)); // Create preview URL
     }
   };
@@ -18,13 +29,16 @@ export default function AvatarUpload() {
   const handleRemove = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAvatar(null);
+
+    setAvatarFile(null);
+
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // Reset file input
     }
   };
 
   return (
-    <div className={s.avatarUpload}>
+    <div className={`${s.avatarUpload} ${hasError ? s.hasError : null}`}>
       {avatar ? (
         <div className={s.previewWrapper}>
           <Image

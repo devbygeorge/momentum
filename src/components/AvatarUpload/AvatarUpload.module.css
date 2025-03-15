@@ -8,6 +8,10 @@
   border-radius: 8px;
 }
 
+.hasError {
+  border-color: #fa4d4d;
+}
+
 .uploadLabel {
   display: flex;
   align-items: center;

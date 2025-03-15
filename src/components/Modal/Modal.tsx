@@ -41,7 +41,7 @@ export default function Modal({
     <div
       className={`${s.backdrop} ${!isOpen ? s.hidden : ""}`}
       onClick={onClose}
-      aria-hidden="true"
+      {...(!isOpen && { inert: true })}
     >
       <div
         className={`${s.modal} ${!isOpen ? s.hidden : ""}`}
@@ -52,7 +52,11 @@ export default function Modal({
         <button className={s.closeButton} onClick={onClose} aria-label="Close">
           <CancelIcon />
         </button>
-        {title && <h2 id="modal-title" className={s.modalHeading}>{title}</h2>}
+        {title && (
+          <h2 id="modal-title" className={s.modalHeading}>
+            {title}
+          </h2>
+        )}
         <div className={s.modalContent}>{children}</div>
       </div>
     </div>

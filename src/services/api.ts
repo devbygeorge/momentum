@@ -84,12 +84,9 @@ export const updateTaskStatus = async (taskId: number, status_id: number) => {
 };
 
 // Create a new employee
-export const createEmployee = async (employeeData: {
-  name: string;
-  surname: string;
-  avatar?: string;
-  department_id: number;
-}) => {
-  const response = await api.post("/employees", employeeData);
+export const createEmployee = async (employeeData: FormData) => {
+  const response = await api.post("/employees", employeeData, {
+    headers: { "Content-Type": "multipart/form-data" }, // Allow file uploads
+  });
   return response.data;
 };
