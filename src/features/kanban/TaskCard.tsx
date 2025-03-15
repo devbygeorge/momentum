@@ -9,8 +9,9 @@ import Link from "next/link";
 
 export default function TaskCard() {
   const [formattedDate, setFormattedDate] = useState("");
+  const [avatarSrc, setAvatarSrc] = useState("");
 
-  const task = db.tasks[0];
+  const task = db.task;
 
   useEffect(() => {
     setFormattedDate(formatDate(task.due_date));
@@ -42,9 +43,14 @@ export default function TaskCard() {
       </section>
 
       <footer className={s.footer}>
-        <div className={s.avatarWrapper}>
-          <Image src={task.employee.avatar} alt="Employee Avatar" fill />
-        </div>
+        <Image
+          className={s.avatar}
+          src={avatarSrc || task.employee.avatar}
+          alt="Employee Avatar"
+          width={31}
+          height={31}
+          onError={() => setAvatarSrc("/avatar-placeholder.png")}
+        />
 
         <div className={s.totalComments}>
           <CommentsIcon />

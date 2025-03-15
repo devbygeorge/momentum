@@ -33,9 +33,13 @@ export default function FiltersDropdown({
             <CheckboxDefaultIcon />
             {variant === "employees" ? (
               <div className={s.dropdownEmployeeWrapper}>
-                <div className={s.dropdownEmployeeAvatar}>
-                  <Image src={item.avatar || ""} alt="Employee Picture" fill />
-                </div>
+                <Image
+                  className={s.dropdownEmployeeAvatar}
+                  src={item.avatar || ""}
+                  alt="Employee Picture"
+                  width={28}
+                  height={28}
+                />
                 {item.name} {item.surname}
               </div>
             ) : (

@@ -6,14 +6,9 @@
 }
 
 .logo a {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
-  width: 210px;
-  height: 38px;
-}
 
-.logo img {
-  position: absolute;
 }
 
 .navList {

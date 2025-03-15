@@ -59,14 +59,11 @@
   justify-items: flex-start;
 }
 
-.avatarWrapper {
-  position: relative;
-  width: 38px;
-  height: 38px;
+.avatar {
+  grid-row: 1/4;
+
   border-radius: 50%;
   overflow: hidden;
-
-  grid-row: 1/4;
 }
 
 .author {

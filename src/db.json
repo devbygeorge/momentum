@@ -1,85 +1,34 @@
 {
-  "statuses": [
-    {
-      "id": 1,
-      "name": "დასაწყები"
-    },
-    {
-      "id": 2,
-      "name": "პროგრესში"
-    },
-    {
-      "id": 3,
-      "name": "მზად ტესტირებისთვის"
-    },
-    {
-      "id": 4,
-      "name": "დასრულებული"
-    }
-  ],
-  "departments": [
-    {
+  "task": {
+    "id": 511,
+    "name": "შექმენით პრეზენტაცია ახალი პროექტისთვის",
+    "description": "გაამზადეთ დეტალური პრეზენტაცია პროექტის მთავარ ასპექტებზე.",
+    "due_date": "2025-05-19T20:00:00.000000Z",
+    "department": {
       "id": 1,
       "name": "ადმინისტრაციის დეპარტამენტი"
     },
-    {
-      "id": 2,
-      "name": "ადამიანური რესურსების დეპარტამენტი"
+    "employee": {
+      "id": 534,
+      "name": "Luka",
+      "surname": "Beridze",
+      "avatar": "https://momentum.redberryinternship.ge/storage/employee-avatars/4UNEVygmJTkGBlvO9CBsfTXLpCtEHJGeO4zQSJwk.jpg",
+      "department": {
+        "id": 1,
+        "name": "ადმინისტრაციის დეპარტამენტი"
+      }
     },
-    {
-      "id": 3,
-      "name": "ფინანსების დეპარტამენტი"
-    },
-    {
-      "id": 4,
-      "name": "გაყიდვები და მარკეტინგის დეპარტამენტი"
-    },
-    {
-      "id": 5,
-      "name": "ლოჯოსტიკის დეპარტამენტი"
-    },
-    {
-      "id": 6,
-      "name": "ტექნოლოგიების დეპარტამენტი"
-    },
-    {
-      "id": 7,
-      "name": "მედიის დეპარტამენტი"
-    }
-  ],
-  "priorities": [
-    {
+    "status": {
       "id": 1,
-      "name": "დაბალი",
-      "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/Low.svg"
+      "name": "დასაწყები"
     },
-    {
-      "id": 2,
-      "name": "საშუალო",
-      "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/Medium.svg"
-    },
-    {
+    "priority": {
       "id": 3,
       "name": "მაღალი",
       "icon": "https://momentum.redberryinternship.ge/storage/priority-icons/High.svg"
-    }
-  ],
-  "employees": [
-    {
-      "id": 1,
-      "name": "ლადო",
-      "surname": "გაგა",
-      "avatar": "/temp/avatar-1.png",
-      "department_id": 1
     },
-    {
-      "id": 2,
-      "name": "გიორგი",
-      "surname": "ნუკრი",
-      "avatar": "/temp/avatar-1.png",
-      "department_id": 2
-    }
-  ],
+    "total_comments": 0
+  },
   "comments": [
     {
       "id": 1,
@@ -142,35 +91,6 @@
       "author_avatar": "/temp/avatar-2.png",
       "author_nickname": "ემილია მორგანი",
       "sub_comments": null
-    }
-  ],
-  "tasks": [
-    {
-      "id": 1,
-      "name": "Redberry-ს საიტის ლენდინგის დიზაინი",
-      "description": "მიზანია რომ შეიქმნას თანამედროვე, სუფთა და ფუნქციონალური დიზაინი, რომელიც უზრუნველყოფს მარტივ ნავიგაციას და მკაფიო ინფორმაციის გადაცემას. დიზაინი უნდა იყოს ადაპტირებადი (responsive), გამორჩეული ვიზუალით, მინიმალისტური სტილით და ნათელი ტიპოგრაფიით.",
-      "due_date": "2025-12-31",
-      "status": {
-        "id": 1,
-        "name": "Todo"
-      },
-      "priority": {
-        "id": 1,
-        "name": "High",
-        "icon": "/temp/priority-high.svg"
-      },
-      "department": {
-        "id": 1,
-        "name": "IT"
-      },
-      "employee": {
-        "id": 1,
-        "name": "ლადო",
-        "surname": "გაგა",
-        "avatar": "/temp/avatar-1.png",
-        "department_id": 1
-      },
-      "total_comments": 8
     }
   ]
 }

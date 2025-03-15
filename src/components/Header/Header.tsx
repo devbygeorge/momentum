@@ -12,7 +12,13 @@ export default function Header() {
     <header className={`${s.header} container`}>
       <div className={s.logo}>
         <Link href="/">
-          <Image src="/logo.svg" alt="Momentum" fill />
+          <Image
+            src="/logo.svg"
+            alt="Momentum"
+            width={210}
+            height={38}
+            priority
+          />
         </Link>
       </div>
       <nav>

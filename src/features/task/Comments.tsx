@@ -29,9 +29,13 @@ export default function Comments() {
         {comments.map((comment) => (
           <li key={comment.id} className={s.commentItem}>
             <article className={s.commentBody}>
-              <div className={s.avatarWrapper}>
-                <Image src={comment.author_avatar} alt="Comment Avatar" fill />
-              </div>
+              <Image
+                className={s.avatar}
+                src={comment.author_avatar}
+                alt="Comment Avatar"
+                width={38}
+                height={38}
+              />
               <strong className={s.author}>{comment.author_nickname}</strong>
               <p className={s.text}>{comment.text}</p>
               <button className={s.replyButton}>
@@ -43,13 +47,13 @@ export default function Comments() {
                 {comment.sub_comments.map((subcomment) => (
                   <li key={subcomment.id} className={s.replyItem}>
                     <article className={s.commentBody}>
-                      <div className={s.avatarWrapper}>
-                        <Image
-                          src={subcomment.author_avatar}
-                          alt="Comment Avatar"
-                          fill
-                        />
-                      </div>
+                      <Image
+                        className={s.avatar}
+                        src={subcomment.author_avatar}
+                        alt="Comment Avatar"
+                        width={38}
+                        height={38}
+                      />
                       <strong className={s.author}>
                         {subcomment.author_nickname}
                       </strong>
