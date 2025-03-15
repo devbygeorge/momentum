@@ -68,7 +68,7 @@ export const fetchTask = async (taskId: number) => {
 export const createTask = async (taskData: {
   name: string;
   description: string;
-  due_date: string;
+  due_date: Date;
   status_id: number;
   employee_id: number;
   priority_id: number;

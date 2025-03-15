@@ -41,7 +41,9 @@ export default function TaskCard({ task }: TaskCardProps) {
 
       <section className={s.main}>
         <h3 className={s.name}>{task.name}</h3>
-        <p className={s.description}>{truncateText(task.description, 100)}</p>
+        <p className={s.description}>
+          {truncateText(task.description || "", 100)}
+        </p>
       </section>
 
       <footer className={s.footer}>

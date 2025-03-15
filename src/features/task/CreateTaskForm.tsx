@@ -9,18 +9,25 @@ import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
 import { addDays } from "date-fns";
 import { validateField } from "@/utils/validation";
-import { SelectOption } from "@/types";
+import { SelectOption, Task } from "@/types";
 
 import {
   FORM_STORAGE_KEY,
   DEFAULT_STATUS,
   DEFAULT_PRIORITY,
 } from "@/constants";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createTask } from "@/services/api";
+import { useRouter } from "next/router";
 
 export default function CreateTaskForm() {
+    const router = useRouter();
+  
   const { statuses, departments, priorities, employees } = useAppContext();
 
   const nextDay = addDays(new Date(), 1);
+
+  const queryClient = useQueryClient();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -66,10 +73,20 @@ export default function CreateTaskForm() {
     )
       return;
 
-    // Simulate API call success
-    const isSuccess = true;
+    mutate();
+  };
 
-    if (isSuccess) {
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      createTask({
+        name: formData.title,
+        description: formData.description,
+        due_date: formData.date,
+        status_id: formData.status.id,
+        employee_id: formData.employee?.id || 1,
+        priority_id: formData.priority.id,
+      }),
+    onSuccess: (task) => {
       localStorage.removeItem(FORM_STORAGE_KEY);
       setFormData({
         title: "",
@@ -80,11 +97,19 @@ export default function CreateTaskForm() {
         department: null,
         date: nextDay,
       });
-    }
-  };
+
+      queryClient.setQueryData(["tasks"], (oldTasks: Task[]) => {
+        return [...oldTasks, task];
+      });
+
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+
+      router.push(`/`);
+    },
+  });
 
   const reqs = {
-    title: validateField(formData.title, 2, 255, undefined, validateOnSubmit),
+    title: validateField(formData.title, 3, 255, undefined, validateOnSubmit),
     description: validateField(formData.description, 4, 255, 4), // Min 4 words
   };
 
@@ -120,7 +145,7 @@ export default function CreateTaskForm() {
       <form className={s.form} onSubmit={handleSubmit}>
         <FormGroup
           label="სათაური*"
-          minText="მინიმუმ 2 სიმბოლო"
+          minText="მინიმუმ 3 სიმბოლო"
           maxText="მაქსიმუმ 255 სიმბოლო"
           minError={!reqs.title.minReqs}
           maxError={!reqs.title.maxReqs}
