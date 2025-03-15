@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "momentum.redberryinternship.ge",
       },
+      {
+        protocol: "https",
+        hostname: "api.dicebear.com",
+      },
     ],
   },
 };
