@@ -1,3 +1,4 @@
+import { Ref } from "react";
 import s from "./Textarea.module.css";
 
 type TextareaProps = {
@@ -6,6 +7,7 @@ type TextareaProps = {
   value: string;
   onChange: (value: string) => void;
   hasError?: boolean;
+  ref?: Ref<HTMLTextAreaElement> | undefined;
 };
 
 export default function Textarea({
@@ -14,6 +16,7 @@ export default function Textarea({
   value,
   onChange,
   hasError,
+  ref,
 }: TextareaProps) {
   return (
     <textarea
@@ -23,6 +26,7 @@ export default function Textarea({
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      ref={ref}
     />
   );
 }

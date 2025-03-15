@@ -35,8 +35,20 @@ export const fetchEmployees = async () => {
 };
 
 // Fetch Task Comment
-export const fetchComments = async (taskId: string | string[] | undefined) => {
+export const fetchComments = async (taskId: number) => {
   const response = await api.get(`/tasks/${taskId}/comments`);
+  return response.data;
+};
+
+// Create comment
+export const createComment = async (
+  taskId: number,
+  commentData: {
+    text: string;
+    parent_id: number | null;
+  }
+) => {
+  const response = await api.post(`/tasks/${taskId}/comments`, commentData);
   return response.data;
 };
 
@@ -47,7 +59,7 @@ export const fetchTasks = async () => {
 };
 
 // Fetch single task
-export const fetchTask = async (taskId: string | string[] | undefined) => {
+export const fetchTask = async (taskId: number) => {
   const response = await api.get(`/tasks/${taskId}`);
   return response.data;
 };

@@ -6,7 +6,7 @@ type TaskDetailsPageProps = {
 };
 
 export default function TaskDetailsPage({ taskId }: TaskDetailsPageProps) {
-  return <TaskDetails taskId={taskId} />;
+  return <TaskDetails taskId={Number(taskId)} />;
 }
 
 // Fetch taskId on the server before rendering

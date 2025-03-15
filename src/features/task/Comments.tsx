@@ -3,28 +3,56 @@ import Button from "@/components/Button/Button";
 import s from "./Comments.module.css";
 import ReplyIcon from "@/assets/icons/reply.svg";
 import Textarea from "@/components/Textarea/Textarea";
-import { useQuery } from "@tanstack/react-query";
-import { fetchComments } from "@/services/api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { createComment, fetchComments } from "@/services/api";
 import { Comment } from "@/types";
+import { useRef, useState } from "react";
 
 type CommentTypes = {
-  taskId: string | string[] | undefined;
+  taskId: number;
 };
 
 export default function Comments({ taskId }: CommentTypes) {
-  const { data: comments = [] } = useQuery<Comment[]>({
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [textareaValue, setTextareaValue] = useState("");
+  const [parentId, setParentId] = useState<number | null>(null);
+
+  const { data: comments = [], refetch } = useQuery<Comment[]>({
     queryKey: ["comments", taskId],
     queryFn: () => fetchComments(taskId),
   });
 
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      createComment(taskId, {
+        text: textareaValue,
+        parent_id: parentId,
+      }),
+    onSuccess: () => {
+      setTextareaValue("");
+      setParentId(null);
+      refetch();
+    },
+  });
+
+  const focusOnComment = (commentId: number) => {
+    setParentId((prev) => (prev === commentId ? null : commentId));
+    textareaRef.current?.focus();
+  };
+
   return (
     <div className={s.wrapper}>
       <form className={s.commentForm} onSubmit={(e) => e.preventDefault()}>
-        <Textarea placeholder="დაწერე კომენტარი" value="" onChange={() => {}} />
+        <Textarea
+          placeholder="დაწერე კომენტარი"
+          value={textareaValue}
+          onChange={setTextareaValue}
+          ref={textareaRef}
+        />
         <Button
           className={s.commentButton}
           variant="secondary"
-          onClick={() => {}}
+          onClick={() => mutate()}
         >
           დააკომენტარე
         </Button>
@@ -36,7 +64,12 @@ export default function Comments({ taskId }: CommentTypes) {
 
       <ul className={s.commentsList}>
         {comments.map((comment) => (
-          <li key={comment.id} className={s.commentItem}>
+          <li
+            key={comment.id}
+            className={`${s.commentItem} ${
+              comment.id === parentId ? s.activeComment : ""
+            }`}
+          >
             <article className={s.commentBody}>
               <img
                 className={s.avatar}
@@ -47,7 +80,10 @@ export default function Comments({ taskId }: CommentTypes) {
               />
               <strong className={s.author}>{comment.author_nickname}</strong>
               <p className={s.text}>{comment.text}</p>
-              <button className={s.replyButton}>
+              <button
+                className={s.replyButton}
+                onClick={() => focusOnComment(comment.id)}
+              >
                 <ReplyIcon /> უპასუხე
               </button>
             </article>

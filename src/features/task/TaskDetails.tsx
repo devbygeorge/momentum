@@ -6,35 +6,43 @@ import UserIcon from "@/assets/icons/user.svg";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import Select from "@/components/Select/Select";
 import { useAppContext } from "@/context/AppContext";
-import { useEffect, useState } from "react";
-import { fetchTask } from "@/services/api";
-import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { fetchTask, updateTaskStatus } from "@/services/api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { formatDate } from "@/utils/dateUtils";
-import { SelectOption } from "@/types";
+import { Task } from "@/types";
 
 type TaskDetailsTypes = {
-  taskId: string | string[] | undefined;
+  taskId: number;
 };
 
 export default function TaskDetails({ taskId }: TaskDetailsTypes) {
+  const { statuses } = useAppContext();
+  const [avatarSrc, setAvatarSrc] = useState("");
+
+  const queryClient = useQueryClient();
+
   const { data: task, isLoading } = useQuery({
     queryKey: ["task", taskId],
     queryFn: () => fetchTask(taskId),
   });
 
-  const { statuses } = useAppContext();
-  const [selectedStatus, setSelectedStatus] = useState<SelectOption | null>(
-    null
-  );
-  const [avatarSrc, setAvatarSrc] = useState("");
+  const { mutate: changeTaskStatus } = useMutation({
+    mutationFn: (newStatusId: number) => updateTaskStatus(taskId, newStatusId),
+    onSuccess: (data) => {
+      queryClient.setQueryData(["task", taskId], (oldTask: Task) =>
+        oldTask ? { ...oldTask, status: data.status } : oldTask
+      );
 
-  const updateStatus = (option: SelectOption) => {
-    setSelectedStatus(option);
-  };
+      queryClient.setQueryData(["tasks"], (oldTasks: Task[]) => {
+        return oldTasks?.map((task) =>
+          task.id === taskId ? { ...task, status: data.status } : task
+        );
+      });
 
-  useEffect(() => {
-    setSelectedStatus(task?.status);
-  }, [task?.status]);
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    },
+  });
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -71,8 +79,8 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
             <dd>
               <Select
                 options={statuses}
-                selected={selectedStatus}
-                onChange={updateStatus}
+                selected={task?.status} // Deriving status directly from task
+                onChange={(option) => changeTaskStatus(option.id)}
               />
             </dd>
 
@@ -89,7 +97,6 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
                 height={32}
                 onError={() => setAvatarSrc("/avatar-placeholder.png")}
               />
-
               <span className={s.employeeDepartment}>
                 {task.department.name}
               </span>
@@ -102,7 +109,7 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
               <CalendarIcon />
               დავალების ვადა
             </dt>
-            <dd>ორშ - {formatDate(task.due_date)}</dd>
+            <dd>{formatDate(task.due_date)}</dd>
           </dl>
         </section>
       </article>
