@@ -6,10 +6,12 @@ import DatePicker from "@/components/DatePicker/DatePicker";
 import Button from "@/components/Button/Button";
 import FormGroup from "@/components/FormGroup/FormGroup";
 import { useAppContext } from "@/context/AppContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Option } from "@/components/Select/Select";
 import { addDays } from "date-fns";
 import { validateField } from "@/utils/validation";
+
+const FORM_STORAGE_KEY = "employeeFormData";
 
 const defaultStatus = {
   id: 1,
@@ -70,6 +72,22 @@ export default function CreateTaskForm() {
       validationErrors.employee
     )
       return;
+
+    // Simulate API call success
+    const isSuccess = true;
+
+    if (isSuccess) {
+      localStorage.removeItem(FORM_STORAGE_KEY);
+      setFormData({
+        title: "",
+        description: "",
+        status: defaultStatus,
+        priority: defaultPriority,
+        employee: null,
+        department: null,
+        date: nextDay,
+      });
+    }
   };
 
   const reqs = {
@@ -87,6 +105,22 @@ export default function CreateTaskForm() {
   const filteredEmployees = employees?.filter(
     (employee) => employee.department_id === formData.department?.id
   );
+
+  // Load saved form data from localStorage on mount
+  useEffect(() => {
+    const savedFormData = localStorage.getItem(FORM_STORAGE_KEY);
+    if (savedFormData) {
+      setFormData(JSON.parse(savedFormData));
+    }
+  }, []);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(formData));
+    }, 500); // Debounce for 500ms
+
+    return () => clearTimeout(handler); // Cleanup timeout on each re-render
+  }, [formData]);
 
   return (
     <div className={s.wrapper}>
