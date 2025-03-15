@@ -1,23 +1,40 @@
 import Comments from "./Comments";
 import s from "./TaskDetails.module.css";
-import db from "@/db.json";
 import Image from "next/image";
 import PieChartIcon from "@/assets/icons/pie-chart.svg";
 import UserIcon from "@/assets/icons/user.svg";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import Select from "@/components/Select/Select";
 import { useAppContext } from "@/context/AppContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Option } from "@/components/Select/Select";
+import { fetchTask } from "@/services/api";
+import { useQuery } from "@tanstack/react-query";
+import { formatDate } from "@/utils/dateUtils";
 
-export default function TaskDetails() {
-  const task = db.tasks[0];
+type TaskDetailsTypes = {
+  taskId: string | string[] | undefined;
+};
+
+export default function TaskDetails({ taskId }: TaskDetailsTypes) {
+  const { data: task, isLoading } = useQuery({
+    queryKey: ["task", taskId],
+    queryFn: () => fetchTask(taskId),
+  });
+
   const { statuses } = useAppContext();
-  const [selectedStatus, setSelectedStatus] = useState<Option>(task.status);
+  const [selectedStatus, setSelectedStatus] = useState<Option | null>(null);
+  const [avatarSrc, setAvatarSrc] = useState("");
 
   const updateStatus = (option: Option) => {
     setSelectedStatus(option);
   };
+
+  useEffect(() => {
+    setSelectedStatus(task?.status);
+  }, [task?.status]);
+
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <div className={s.wrapper}>
@@ -62,9 +79,14 @@ export default function TaskDetails() {
               თანამშრომელი
             </dt>
             <dd className={s.employeeWrapper}>
-              <div className={s.employeeAvatarWrapper}>
-                <Image src={task.employee.avatar} alt="Employee Avatar" fill />
-              </div>
+              <Image
+                className={s.employeeAvatar}
+                src={avatarSrc || task.employee.avatar}
+                alt="Employee Avatar"
+                width={32}
+                height={32}
+                onError={() => setAvatarSrc("/avatar-placeholder.png")}
+              />
 
               <span className={s.employeeDepartment}>
                 {task.department.name}
@@ -78,7 +100,7 @@ export default function TaskDetails() {
               <CalendarIcon />
               დავალების ვადა
             </dt>
-            <dd>ორშ - {task.due_date.replace(/-/g, "/")}</dd>
+            <dd>ორშ - {formatDate(task.due_date)}</dd>
           </dl>
         </section>
       </article>

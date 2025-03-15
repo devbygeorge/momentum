@@ -42,6 +42,12 @@ export const fetchTasks = async () => {
   return response.data;
 };
 
+// Fetch single task
+export const fetchTask = async (taskId: string | string[] | undefined) => {
+  const response = await api.get(`/tasks/${taskId}`);
+  return response.data;
+};
+
 // Create a new employee
 export const createEmployee = async (employeeData: {
   name: string;
