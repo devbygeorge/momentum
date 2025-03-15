@@ -1,34 +1,53 @@
 import s from "./FiltersDropdown.module.css";
 import Button from "@/components/Button/Button";
+import CheckboxActiveIcon from "@/assets/icons/checkbox-active.svg";
 import CheckboxDefaultIcon from "@/assets/icons/checkbox-default.svg";
-// import CheckboxActiveIcon from "@/assets/icons/checkbox-active.svg";
 import Image from "next/image";
 import { SelectOption } from "@/types";
 
 type FiltersDropdownProps = {
-  variant?: "primary" | "employees";
-  onClick?: () => void;
-  selectMode: "single" | "multi";
+  type: "departments" | "priorities" | "employees";
   data: SelectOption[];
+  selected: Set<string> | string[];
+  onSelect: (
+    type: "departments" | "priorities" | "employees",
+    id: string
+  ) => void;
+  onApply: () => void;
 };
 
 export default function FiltersDropdown({
-  variant,
-  onClick,
+  type,
   data,
+  selected,
+  onSelect,
+  onApply,
 }: FiltersDropdownProps) {
   return (
     <div className={s.dropdownWrapper}>
       <ul className={s.dropdownList}>
-        {data?.map((item) => (
-          <li key={item.id} className={s.dropdownItem}>
-            <CheckboxDefaultIcon />
-            {variant === "employees" ? (
+        {data.map((item) => (
+          <li
+            key={item.id}
+            className={s.dropdownItem}
+            onClick={() => onSelect(type, item.id.toString())}
+          >
+            {(
+              selected instanceof Set
+                ? selected.has(item.id.toString())
+                : selected.includes(item.id.toString())
+            ) ? (
+              <CheckboxActiveIcon />
+            ) : (
+              <CheckboxDefaultIcon />
+            )}
+
+            {type === "employees" ? (
               <div className={s.dropdownEmployeeWrapper}>
                 <Image
                   className={s.dropdownEmployeeAvatar}
                   src={item.avatar || ""}
-                  alt="Employee Picture"
+                  alt="Employee"
                   width={28}
                   height={28}
                 />
@@ -42,7 +61,7 @@ export default function FiltersDropdown({
       </ul>
 
       <div className={s.dropdownButton}>
-        <Button variant="secondary" onClick={onClick}>
+        <Button variant="secondary" onClick={onApply}>
           არჩევა
         </Button>
       </div>

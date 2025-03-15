@@ -40,6 +40,7 @@
 .dropdownEmployeeAvatar {
   border-radius: 50%;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .dropdownEmployeeAvatar img {

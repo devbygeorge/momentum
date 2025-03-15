@@ -1,74 +1,110 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import s from "./Filters.module.css";
 import ArrowDownIcon from "@/assets/icons/arrow-down.svg";
-import CloseIcon from "@/assets/icons/close.svg";
-import { useAppContext } from "@/context/AppContext";
-
 import FiltersDropdown from "./FiltersDropdown";
-import { useState } from "react";
+import { useAppContext } from "@/context/AppContext";
 
 type DropdownType = "departments" | "priorities" | "employees";
 
 export default function Filters() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { departments, priorities, employees } = useAppContext();
+
   const [activeDropdown, setActiveDropdown] = useState<DropdownType | null>(
     null
   );
+  const [selectedFilters, setSelectedFilters] = useState({
+    departments: new Set<string>(),
+    priorities: new Set<string>(),
+    employees: [] as string[],
+  });
 
-  const { departments, priorities, employees } = useAppContext();
+  useEffect(() => {
+    setSelectedFilters({
+      departments: new Set(searchParams.get("departments")?.split(",") || []),
+      priorities: new Set(searchParams.get("priorities")?.split(",") || []),
+      employees: searchParams.get("employees")
+        ? [searchParams.get("employees")!]
+        : [],
+    });
+  }, [searchParams]);
 
   const toggleDropdown = (type: DropdownType) => {
-    setActiveDropdown((prevState) => (prevState === type ? null : type));
+    setActiveDropdown((prev) => (prev === type ? null : type));
+  };
+
+  const handleSelect = (type: DropdownType, id: string) => {
+    setSelectedFilters((prevFilters) => {
+      const updatedFilters = { ...prevFilters };
+
+      if (type === "employees") {
+        updatedFilters[type] = prevFilters.employees.includes(id) ? [] : [id];
+      } else {
+        const newSet = new Set(prevFilters[type]);
+        if (newSet.has(id)) {
+          newSet.delete(id);
+        } else {
+          newSet.add(id);
+        }
+        updatedFilters[type] = newSet;
+      }
+
+      return updatedFilters;
+    });
+  };
+
+  const applyFilters = () => {
+    const query = new URLSearchParams();
+
+    if (selectedFilters.departments.size) {
+      query.set(
+        "departments",
+        Array.from(selectedFilters.departments).join(",")
+      );
+    }
+    if (selectedFilters.priorities.size) {
+      query.set("priorities", Array.from(selectedFilters.priorities).join(","));
+    }
+    if (selectedFilters.employees.length) {
+      query.set("employees", selectedFilters.employees[0]);
+    }
+
+    router.push(`/?${query.toString()}`);
+    setActiveDropdown(null);
   };
 
   return (
     <div className={s.wrapper}>
       <ul className={s.tabList}>
-        <li className={s.tabItem} onClick={() => toggleDropdown("departments")}>
-          დეპარტამენტი
-          <ArrowDownIcon className={s.tabItemIcon} />
-        </li>
-        <li className={s.tabItem} onClick={() => toggleDropdown("priorities")}>
-          პრიორიტეტი
-          <ArrowDownIcon className={s.tabItemIcon} />
-        </li>
-        <li className={s.tabItem} onClick={() => toggleDropdown("employees")}>
-          თანამშრომელი
-          <ArrowDownIcon className={s.tabItemIcon} />
-        </li>
+        {["departments", "priorities", "employees"].map((type) => (
+          <li
+            key={type}
+            className={s.tabItem}
+            onClick={() => toggleDropdown(type as DropdownType)}
+          >
+            {type === "departments"
+              ? "დეპარტამენტი"
+              : type === "priorities"
+              ? "პრიორიტეტი"
+              : "თანამშრომელი"}
+            <ArrowDownIcon />
+          </li>
+        ))}
       </ul>
 
-      {activeDropdown === "departments" && (
-        <FiltersDropdown data={departments} selectMode="single" />
-      )}
-
-      {activeDropdown === "priorities" && (
-        <FiltersDropdown data={priorities} selectMode="multi" />
-      )}
-
-      {activeDropdown === "employees" && (
+      {activeDropdown && (
         <FiltersDropdown
-          data={employees}
-          selectMode="multi"
-          variant="employees"
+          type={activeDropdown}
+          data={{ departments, priorities, employees }[activeDropdown]}
+          selected={selectedFilters[activeDropdown]}
+          onSelect={handleSelect}
+          onApply={applyFilters}
         />
       )}
-
-      <div className={s.chosenWrapper}>
-        <ul className={s.chosenList}>
-          <li className={s.chosenItem}>
-            მაღალი
-            <CloseIcon />
-          </li>
-          <li className={s.chosenItem}>
-            დიზაინი
-            <CloseIcon />
-          </li>
-          <li className={s.chosenItem}>
-            ემილია მორგანი
-            <CloseIcon />
-          </li>
-        </ul>
-        <span className={s.chosenClear}>გასუფთავება</span>
-      </div>
     </div>
   );
 }
