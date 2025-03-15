@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "momentum.redberryinternship.ge",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
