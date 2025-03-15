@@ -1,12 +1,21 @@
+/* eslint-disable @next/next/no-img-element */
 import Button from "@/components/Button/Button";
 import s from "./Comments.module.css";
-import Image from "next/image";
 import ReplyIcon from "@/assets/icons/reply.svg";
-import db from "@/db.json";
 import Textarea from "@/components/Textarea/Textarea";
+import { useQuery } from "@tanstack/react-query";
+import { fetchComments } from "@/services/api";
+import { Comment } from "@/types";
 
-export default function Comments() {
-  const { comments } = db;
+type CommentTypes = {
+  taskId: string | string[] | undefined;
+};
+
+export default function Comments({ taskId }: CommentTypes) {
+  const { data: comments = [] } = useQuery<Comment[]>({
+    queryKey: ["comments", taskId],
+    queryFn: () => fetchComments(taskId),
+  });
 
   return (
     <div className={s.wrapper}>
@@ -22,14 +31,14 @@ export default function Comments() {
       </form>
 
       <h3 className={s.subheading}>
-        კომენტარები <span className={s.commentsCount}>3</span>
+        კომენტარები <span className={s.commentsCount}>{comments.length}</span>
       </h3>
 
       <ul className={s.commentsList}>
         {comments.map((comment) => (
           <li key={comment.id} className={s.commentItem}>
             <article className={s.commentBody}>
-              <Image
+              <img
                 className={s.avatar}
                 src={comment.author_avatar}
                 alt="Comment Avatar"
@@ -42,12 +51,12 @@ export default function Comments() {
                 <ReplyIcon /> უპასუხე
               </button>
             </article>
-            {comment.sub_comments?.length && (
+            {comment.sub_comments?.length ? (
               <ul className={s.repliesList}>
                 {comment.sub_comments.map((subcomment) => (
                   <li key={subcomment.id} className={s.replyItem}>
                     <article className={s.commentBody}>
-                      <Image
+                      <img
                         className={s.avatar}
                         src={subcomment.author_avatar}
                         alt="Comment Avatar"
@@ -62,7 +71,7 @@ export default function Comments() {
                   </li>
                 ))}
               </ul>
-            )}
+            ) : null}
           </li>
         ))}
       </ul>

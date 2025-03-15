@@ -23,7 +23,9 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
   });
 
   const { statuses } = useAppContext();
-  const [selectedStatus, setSelectedStatus] = useState<SelectOption | null>(null);
+  const [selectedStatus, setSelectedStatus] = useState<SelectOption | null>(
+    null
+  );
   const [avatarSrc, setAvatarSrc] = useState("");
 
   const updateStatus = (option: SelectOption) => {
@@ -107,7 +109,7 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
 
       {/* Comments Side */}
       <aside className={s.aside}>
-        <Comments />
+        <Comments taskId={taskId} />
       </aside>
     </div>
   );

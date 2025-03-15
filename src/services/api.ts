@@ -34,6 +34,12 @@ export const fetchEmployees = async () => {
   return response.data;
 };
 
+// Fetch Task Comment
+export const fetchComments = async (taskId: string | string[] | undefined) => {
+  const response = await api.get(`/tasks/${taskId}/comments`);
+  return response.data;
+};
+
 // Fetch all tasks
 export const fetchTasks = async () => {
   const response = await api.get("/tasks");
@@ -43,17 +49,6 @@ export const fetchTasks = async () => {
 // Fetch single task
 export const fetchTask = async (taskId: string | string[] | undefined) => {
   const response = await api.get(`/tasks/${taskId}`);
-  return response.data;
-};
-
-// Create a new employee
-export const createEmployee = async (employeeData: {
-  name: string;
-  surname: string;
-  avatar?: string;
-  department_id: number;
-}) => {
-  const response = await api.post("/employees", employeeData);
   return response.data;
 };
 
@@ -73,5 +68,16 @@ export const createTask = async (taskData: {
 // Change task status
 export const updateTaskStatus = async (taskId: number, status_id: number) => {
   const response = await api.put(`/tasks/${taskId}`, { status_id });
+  return response.data;
+};
+
+// Create a new employee
+export const createEmployee = async (employeeData: {
+  name: string;
+  surname: string;
+  avatar?: string;
+  department_id: number;
+}) => {
+  const response = await api.post("/employees", employeeData);
   return response.data;
 };
