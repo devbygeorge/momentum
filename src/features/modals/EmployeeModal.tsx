@@ -6,8 +6,8 @@ import Button from "@/components/Button/Button";
 import FormGroup from "@/components/FormGroup/FormGroup";
 import AvatarUpload from "@/components/AvatarUpload/AvatarUpload";
 import { useAppContext } from "@/context/AppContext";
-import { Option } from "@/components/Select/Select";
 import { useState } from "react";
+import { SelectOption } from "@/types";
 
 type EmployeeModalProps = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ type EmployeeModalProps = {
 
 export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
   const { departments } = useAppContext();
-  const [selectedDepartment, setSelectedDepartment] = useState<Option | null>(
+  const [selectedDepartment, setSelectedDepartment] = useState<SelectOption | null>(
     null
   );
 
