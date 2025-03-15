@@ -28,25 +28,16 @@
   pointer-events: none;
 }
 
-.hasError {
-  border-color: #fa4d4d;
-}
-.buttonText {
-  flex: 1;
-}
-
-.button svg {
-  transition: all 0.3s ease;
+.priorityContent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.isButtonOpen {
-  border-bottom-color: transparent;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.isButtonOpen svg {
-  transform: rotate(180deg);
+.employeeContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .dropdown {
@@ -95,4 +86,22 @@
   font-size: 16px;
   font-weight: 400;
   color: #8338ec;
+}
+
+.hasError {
+  border-color: #fa4d4d;
+}
+
+.button svg {
+  transition: all 0.3s ease;
+}
+
+.isButtonOpen {
+  border-bottom-color: transparent;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.isButtonOpen svg {
+  transform: rotate(180deg);
 }

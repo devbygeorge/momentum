@@ -65,24 +65,49 @@ export default function Select({
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
-        {mode === "priority" && (
-          <Image
-            src={selected?.icon || ""}
-            alt={selected?.name || ""}
-            width={16}
-            height={18}
-          />
-        )}
+        {selected ? (
+          <>
+            {mode === "priority" ? (
+              <div className={s.priorityContent}>
+                <Image
+                  src={selected?.icon || ""}
+                  alt={selected?.name || ""}
+                  width={16}
+                  height={18}
+                />
 
-        <span className={s.buttonText}>
-          {selected ? selected.name : "აირჩიეთ"}
-        </span>
+                <span>{selected.name}</span>
+              </div>
+            ) : mode === "employee" ? (
+              <div className={s.employeeContent}>
+                <Image
+                  src={selected?.avatar || ""}
+                  alt={selected?.name || ""}
+                  width={30}
+                  height={30}
+                />
+
+                <span>
+                  {selected.name} {selected.surname}
+                </span>
+              </div>
+            ) : (
+              <span>{selected.name}</span>
+            )}
+          </>
+        ) : (
+          "აირჩიეთ"
+        )}
 
         <ArrowDownSmallIcon />
       </button>
 
       {/* Dropdown List */}
-      <ul className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""}`}>
+      <ul
+        className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""} ${
+          hasError ? s.hasError : ""
+        }`}
+      >
         {mode === "employee" && (
           <li
             className={`${s.option} ${s.addOption}`}
@@ -101,15 +126,32 @@ export default function Select({
               setIsOpen(false);
             }}
           >
-            {mode === "priority" && (
-              <Image
-                src={option.icon || ""}
-                alt={option.name}
-                width={16}
-                height={18}
-              />
+            {mode === "priority" ? (
+              <div className={s.priorityContent}>
+                <Image
+                  src={option.icon || ""}
+                  alt={option.name}
+                  width={16}
+                  height={18}
+                />
+                <span>{option.name}</span>
+              </div>
+            ) : mode === "employee" ? (
+              <div className={s.employeeContent}>
+                <Image
+                  src={option?.avatar || ""}
+                  alt={option?.name || ""}
+                  width={30}
+                  height={30}
+                />
+
+                <span>
+                  {option.name} {option.surname}
+                </span>
+              </div>
+            ) : (
+              <span>{option.name}</span>
             )}
-            {option.name}
           </li>
         ))}
       </ul>
