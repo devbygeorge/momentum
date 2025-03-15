@@ -31,9 +31,12 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const [validateOnSubmit, setValidateOnSubmit] = useState(false);
-
+  
   const handleChange = (name: string, value: string) => {
-    setFormData({ ...formData, [name]: value });
+    // Allow only Georgian (ა-ჰ) and English (A-Z, a-z) letters, plus spaces
+    if (/^[a-zA-Zა-ჰ\s]*$/.test(value)) {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSelectChange = (select: string, option: SelectOption) => {
