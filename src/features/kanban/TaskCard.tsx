@@ -1,17 +1,19 @@
 import Image from "next/image";
 import s from "./TaskCard.module.css";
-import db from "@/db.json";
 import CommentsIcon from "@/assets/icons/comments.svg";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/utils/dateUtils";
 import { truncateText } from "@/utils/stringUtils";
 import Link from "next/link";
+import { Task } from "@/types";
 
-export default function TaskCard() {
+type TaskCardProps = {
+  task: Task;
+};
+
+export default function TaskCard({ task }: TaskCardProps) {
   const [formattedDate, setFormattedDate] = useState("");
   const [avatarSrc, setAvatarSrc] = useState("");
-
-  const task = db.task;
 
   useEffect(() => {
     setFormattedDate(formatDate(task.due_date));

@@ -34,7 +34,7 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
     setSelectedStatus(task?.status);
   }, [task?.status]);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className={s.wrapper}>
