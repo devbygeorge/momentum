@@ -11,7 +11,7 @@ export default function Comments() {
   return (
     <div className={s.wrapper}>
       <form className={s.commentForm} onSubmit={(e) => e.preventDefault()}>
-        <Textarea placeholder="დაწერე კომენტარი" />
+        <Textarea placeholder="დაწერე კომენტარი" value="" onChange={() => {}} />
         <Button
           className={s.commentButton}
           variant="secondary"
