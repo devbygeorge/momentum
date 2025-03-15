@@ -40,6 +40,11 @@
   gap: 10px;
 }
 
+.employeeContent img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .dropdown {
   position: absolute;
   z-index: 1;

@@ -45,6 +45,10 @@
   overflow: hidden;
 }
 
+.dropdownEmployeeAvatar img {
+  object-fit: cover;
+}
+
 .dropdownButton {
   align-self: flex-end;
 }
