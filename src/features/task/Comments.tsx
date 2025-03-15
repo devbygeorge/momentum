@@ -6,15 +6,15 @@ import Textarea from "@/components/Textarea/Textarea";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { createComment, fetchComments } from "@/services/api";
 import { Comment } from "@/types";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 type CommentTypes = {
   taskId: number;
 };
 
 export default function Comments({ taskId }: CommentTypes) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [textareaValue, setTextareaValue] = useState("");
+  const [commentValue, setCommentValue] = useState("");
+  const [replyValue, setReplyValue] = useState("");
   const [parentId, setParentId] = useState<number | null>(null);
 
   const { data: comments = [], refetch } = useQuery<Comment[]>({
@@ -23,36 +23,53 @@ export default function Comments({ taskId }: CommentTypes) {
   });
 
   const { mutate } = useMutation({
-    mutationFn: () =>
+    mutationFn: ({
+      value,
+      parentId,
+    }: {
+      value: string;
+      parentId: number | null;
+    }) =>
       createComment(taskId, {
-        text: textareaValue,
+        text: value,
         parent_id: parentId,
       }),
     onSuccess: () => {
-      setTextareaValue("");
-      setParentId(null);
       refetch();
     },
   });
 
   const focusOnComment = (commentId: number) => {
     setParentId((prev) => (prev === commentId ? null : commentId));
-    textareaRef.current?.focus();
   };
+
+  const submitComment = () => {
+    if (commentValue.trim().length < 1) return;
+    mutate({ value: commentValue, parentId: null });
+    setCommentValue("");
+  };
+
+  const submitReply = () => {
+    if (replyValue.trim().length < 1) return;
+    mutate({ value: replyValue, parentId: parentId });
+    setReplyValue("");
+    setParentId(null);
+  };
+
+  const sortedComments = comments.slice().sort((a, b) => b.id - a.id);
 
   return (
     <div className={s.wrapper}>
       <form className={s.commentForm} onSubmit={(e) => e.preventDefault()}>
         <Textarea
           placeholder="დაწერე კომენტარი"
-          value={textareaValue}
-          onChange={setTextareaValue}
-          ref={textareaRef}
+          value={commentValue}
+          onChange={setCommentValue}
         />
         <Button
           className={s.commentButton}
           variant="secondary"
-          onClick={() => mutate()}
+          onClick={() => submitComment()}
         >
           დააკომენტარე
         </Button>
@@ -63,13 +80,8 @@ export default function Comments({ taskId }: CommentTypes) {
       </h3>
 
       <ul className={s.commentsList}>
-        {comments.map((comment) => (
-          <li
-            key={comment.id}
-            className={`${s.commentItem} ${
-              comment.id === parentId ? s.activeComment : ""
-            }`}
-          >
+        {sortedComments.map((comment) => (
+          <li key={comment.id} className={s.commentItem}>
             <article className={s.commentBody}>
               <img
                 className={s.avatar}
@@ -107,6 +119,25 @@ export default function Comments({ taskId }: CommentTypes) {
                   </li>
                 ))}
               </ul>
+            ) : null}
+            {parentId === comment.id ? (
+              <form
+                className={`${s.commentForm} ${s.replyCommentForm}`}
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <Textarea
+                  placeholder="დაწერე კომენტარი"
+                  value={replyValue}
+                  onChange={setReplyValue}
+                />
+                <Button
+                  className={s.commentButton}
+                  variant="secondary"
+                  onClick={() => submitReply()}
+                >
+                  დააკომენტარე
+                </Button>
+              </form>
             ) : null}
           </li>
         ))}

@@ -12,6 +12,12 @@
   margin-bottom: 66px;
 }
 
+.replyCommentForm {
+  margin-bottom: 0;
+  margin-left: 53px;
+  margin-top: 10px;
+}
+
 .commentButton {
   position: absolute;
   bottom: 15px;
@@ -60,12 +66,7 @@
 }
 
 .commentItem {
-  border-bottom: 1px solid transparent;
-  padding-bottom: 14px;
-}
-
-.activeComment {
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 14px;
 }
 
 .avatar {
