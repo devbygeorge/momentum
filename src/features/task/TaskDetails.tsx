@@ -13,6 +13,7 @@ import { formatDate } from "@/utils/dateUtils";
 import { Task } from "@/types";
 import { getRandomColor } from "@/utils/colorUtils";
 import { PRIORITY_COLORS, RANDOM_COLORS } from "@/constants";
+import Loading from "@/components/Loading/Loading";
 
 type TaskDetailsTypes = {
   taskId: number;
@@ -46,7 +47,7 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
     },
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   const randomColor = getRandomColor(RANDOM_COLORS);
 

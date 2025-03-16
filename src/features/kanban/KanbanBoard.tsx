@@ -6,6 +6,7 @@ import { fetchTasks } from "@/services/api";
 import { Task } from "@/types";
 import { useSearchParams } from "next/navigation";
 import { STATUS_COLORS } from "@/constants";
+import Loading from "@/components/Loading/Loading";
 
 export default function KanbanBoard() {
   const { statuses } = useAppContext();
@@ -26,7 +27,7 @@ export default function KanbanBoard() {
     queryFn: fetchTasks,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading />;
 
   // Function to check if a task matches selected filters
   const isTaskMatchingFilters = (task: Task) => {
