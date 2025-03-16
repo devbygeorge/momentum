@@ -22,41 +22,50 @@ export default function Comments({ taskId }: CommentTypes) {
     queryFn: () => fetchComments(taskId),
   });
 
-  const { mutate } = useMutation({
-    mutationFn: ({
-      value,
-      parentId,
-    }: {
-      value: string;
-      parentId: number | null;
-    }) =>
+  const { mutate: addComment, isPending: isCommentPending } = useMutation({
+    mutationFn: () =>
       createComment(taskId, {
-        text: value,
+        text: commentValue,
+        parent_id: null,
+      }),
+    onSuccess: () => {
+      refetch();
+      setCommentValue("");
+    },
+  });
+
+  const { mutate: addReply, isPending: isReplyPending } = useMutation({
+    mutationFn: () =>
+      createComment(taskId, {
+        text: replyValue,
         parent_id: parentId,
       }),
     onSuccess: () => {
       refetch();
+      setReplyValue("");
     },
   });
 
   const focusOnComment = (commentId: number) => {
     setParentId((prev) => (prev === commentId ? null : commentId));
+    setReplyValue("");
   };
 
   const submitComment = () => {
     if (commentValue.trim().length < 1) return;
-    mutate({ value: commentValue, parentId: null });
-    setCommentValue("");
+    addComment();
   };
 
   const submitReply = () => {
     if (replyValue.trim().length < 1) return;
-    mutate({ value: replyValue, parentId: parentId });
-    setReplyValue("");
-    setParentId(null);
+    addReply();
   };
 
   const sortedComments = comments.slice().sort((a, b) => b.id - a.id);
+  const commentsCount = comments.reduce(
+    (total, comment) => total + 1 + (comment.sub_comments?.length || 0),
+    0
+  );
 
   return (
     <div className={s.wrapper}>
@@ -70,13 +79,14 @@ export default function Comments({ taskId }: CommentTypes) {
           className={s.commentButton}
           variant="secondary"
           onClick={() => submitComment()}
+          disabled={isCommentPending}
         >
           დააკომენტარე
         </Button>
       </form>
 
       <h3 className={s.subheading}>
-        კომენტარები <span className={s.commentsCount}>{comments.length}</span>
+        კომენტარები <span className={s.commentsCount}>{commentsCount}</span>
       </h3>
 
       <ul className={s.commentsList}>
@@ -134,6 +144,7 @@ export default function Comments({ taskId }: CommentTypes) {
                   className={s.commentButton}
                   variant="secondary"
                   onClick={() => submitReply()}
+                  disabled={isReplyPending}
                 >
                   დააკომენტარე
                 </Button>
