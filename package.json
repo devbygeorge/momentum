@@ -16,7 +16,9 @@
     "next": "15.2.2",
     "react": "^19.0.0",
     "react-day-picker": "^9.6.2",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "simplebar": "^6.3.0",
+    "simplebar-react": "^3.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
