@@ -1,7 +1,7 @@
 import Image from "next/image";
 import s from "./TaskCard.module.css";
 import CommentsIcon from "@/assets/icons/comments.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatDate } from "@/utils/dateUtils";
 import { truncateText } from "@/utils/stringUtils";
 import Link from "next/link";
@@ -22,7 +22,7 @@ export default function TaskCard({ task, accentColor }: TaskCardProps) {
     setFormattedDate(formatDate(task.due_date));
   }, [task.due_date]);
 
-  const randomColor = getRandomColor(RANDOM_COLORS);
+  const randomColor = useMemo(() => getRandomColor(RANDOM_COLORS), []);
 
   const priorityColor = PRIORITY_COLORS.find(
     (item) => item.id === task.priority.id

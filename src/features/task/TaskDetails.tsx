@@ -6,7 +6,7 @@ import UserIcon from "@/assets/icons/user.svg";
 import CalendarIcon from "@/assets/icons/calendar.svg";
 import Select from "@/components/Select/Select";
 import { useAppContext } from "@/context/AppContext";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { fetchTask, updateTaskStatus } from "@/services/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { formatDate } from "@/utils/dateUtils";
@@ -47,9 +47,9 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
     },
   });
 
-  if (isLoading) return <Loading />;
+  const randomColor = useMemo(() => getRandomColor(RANDOM_COLORS), []);
 
-  const randomColor = getRandomColor(RANDOM_COLORS);
+  if (isLoading) return <Loading />;
 
   const priorityColor = PRIORITY_COLORS.find(
     (item) => item.id === task.priority.id
