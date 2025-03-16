@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CalendarIconSmall from "@/assets/icons/calendar-small.svg";
 import s from "./DatePicker.module.css";
 import CustomCalendar from "./CustomCalendar";
@@ -7,21 +7,40 @@ import { format } from "date-fns";
 type DatePickerProps = {
   selectedDate: Date;
   onChange: (date: Date) => void;
+  disabledBefore?: Date;
 };
 
 export default function DatePicker({
   selectedDate,
   onChange,
+  disabledBefore,
 }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const datePickerRef = useRef<HTMLDivElement>(null);
 
   const handleDateChange = (date: Date) => {
     onChange(date);
     setIsOpen(false); // Close the datepicker after selection
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        datePickerRef.current &&
+        !datePickerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} ref={datePickerRef}>
       {/* Datepicker Input */}
       <div
         className={`${s.inputWrapper} ${isOpen ? s.isOpen : ""}`}
@@ -43,6 +62,7 @@ export default function DatePicker({
             onClose={() => setIsOpen(false)}
             onChange={handleDateChange}
             selectedDate={selectedDate}
+            disabledBefore={disabledBefore}
           />
         </div>
       )}

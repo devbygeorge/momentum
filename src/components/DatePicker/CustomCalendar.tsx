@@ -9,10 +9,12 @@ export default function CustomCalendar({
   onChange,
   selectedDate,
   onClose, // Add a function to close the calendar
+  disabledBefore,
 }: {
   onChange: (date: Date) => void;
   selectedDate: Date;
   onClose: () => void; // New prop to handle closing
+  disabledBefore?: Date;
 }) {
   const [tempDate, setTempDate] = useState<Date>(selectedDate);
   const [month, setMonth] = useState(selectedDate); // Keep the selected month
@@ -23,7 +25,7 @@ export default function CustomCalendar({
         mode="single"
         selected={tempDate}
         onSelect={setTempDate} // Temporarily store the selected date
-        disabled={{ before: selectedDate }}
+        {...(disabledBefore ? { disabled: { before: disabledBefore } } : {})}
         month={month}
         onMonthChange={setMonth}
         showOutsideDays

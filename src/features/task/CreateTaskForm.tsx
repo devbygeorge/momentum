@@ -21,8 +21,8 @@ import { createTask } from "@/services/api";
 import { useRouter } from "next/router";
 
 export default function CreateTaskForm() {
-    const router = useRouter();
-  
+  const router = useRouter();
+
   const { statuses, departments, priorities, employees } = useAppContext();
 
   const nextDay = addDays(new Date(), 1);
@@ -218,6 +218,7 @@ export default function CreateTaskForm() {
           <DatePicker
             selectedDate={formData.date}
             onChange={handleDateChange}
+            disabledBefore={nextDay}
           />
         </FormGroup>
 
