@@ -1,10 +1,11 @@
+.listWrapper {
+  max-height: 963px;
+}
+
 .list {
   display: flex;
   flex-direction: column;
   gap: 30px;
-
-  max-height: 963px;
-  overflow-y: auto;
 }
 
 .heading {
