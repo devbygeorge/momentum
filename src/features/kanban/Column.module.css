@@ -16,23 +16,10 @@
   margin-bottom: 30px;
   min-height: 52px;
 
-  background-color: #fb5607;
+  background-color: #aaa;
   color: #fff;
   border-radius: 10px;
 
   font-size: 20px;
   font-weight: 500;
-}
-
-.status-1 {
-  background-color: #f7bc30; /* Todo */
-}
-.status-2 {
-  background-color: #fb5607; /* In Progress */
-}
-.status-3 {
-  background-color: #ff006e; /* Ready for Testing */
-}
-.status-4 {
-  background-color: #3a86ff; /* Done */
 }

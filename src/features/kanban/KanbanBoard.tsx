@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchTasks } from "@/services/api";
 import { Task } from "@/types";
 import { useSearchParams } from "next/navigation";
+import { STATUS_COLORS } from "@/constants";
 
 export default function KanbanBoard() {
   const { statuses } = useAppContext();
@@ -46,12 +47,16 @@ export default function KanbanBoard() {
           .filter((task) => task.status.id === status.id)
           .filter(isTaskMatchingFilters);
 
+        const accentColor = STATUS_COLORS.find(
+          (item) => item.id === status.id
+        )?.color;
+
         return (
           <Column
             key={status.id}
-            statusId={status.id}
             statusName={status.name}
             tasks={filteredTasks}
+            accentColor={accentColor}
           />
         );
       })}

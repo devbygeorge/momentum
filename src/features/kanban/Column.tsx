@@ -5,21 +5,25 @@ import "simplebar-react/dist/simplebar.min.css";
 import SimpleBar from "simplebar-react";
 
 type ColumnProps = {
-  statusId: number;
   statusName: string;
   tasks: Task[];
+  accentColor: string | undefined;
 };
 
-export default function Column({ statusId, statusName, tasks }: ColumnProps) {
+export default function Column({
+  statusName,
+  tasks,
+  accentColor,
+}: ColumnProps) {
   return (
     <div className={s.wrapper}>
-      <h2 className={`${s.heading} ${s[`status-${statusId}`]}`}>
+      <h2 style={{ backgroundColor: accentColor }} className={s.heading}>
         {statusName}
       </h2>
       <SimpleBar className={s.listWrapper}>
         <div className={s.list}>
           {tasks?.map((task) => (
-            <TaskCard key={task.id} task={task} />
+            <TaskCard key={task.id} task={task} accentColor={accentColor} />
           ))}
         </div>
       </SimpleBar>

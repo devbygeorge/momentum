@@ -11,6 +11,8 @@ import { fetchTask, updateTaskStatus } from "@/services/api";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { formatDate } from "@/utils/dateUtils";
 import { Task } from "@/types";
+import { getRandomColor } from "@/utils/colorUtils";
+import { PRIORITY_COLORS, RANDOM_COLORS } from "@/constants";
 
 type TaskDetailsTypes = {
   taskId: number;
@@ -46,6 +48,12 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
 
   if (isLoading) return <div>Loading...</div>;
 
+  const randomColor = getRandomColor(RANDOM_COLORS);
+
+  const priorityColor = PRIORITY_COLORS.find(
+    (item) => item.id === task.priority.id
+  )?.color;
+
   return (
     <div className={s.wrapper}>
       {/* Details side */}
@@ -53,7 +61,10 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
         {/* Task Header */}
         <header className={s.header}>
           <div className={s.headerTop}>
-            <div className={s.priority}>
+            <div
+              style={{ borderColor: priorityColor, color: priorityColor }}
+              className={s.priority}
+            >
               <Image
                 src={task.priority.icon}
                 alt={`${task.priority.name} priority`}
@@ -62,7 +73,12 @@ export default function TaskDetails({ taskId }: TaskDetailsTypes) {
               />
               {task.priority.name}
             </div>
-            <div className={s.department}>{task.department.name}</div>
+            <div
+              style={{ backgroundColor: randomColor }}
+              className={s.department}
+            >
+              {task.department.name}
+            </div>
           </div>
           <h1 className={s.heading}>{task.name}</h1>
           <p className={s.description}>{task.description}</p>
