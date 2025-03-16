@@ -29,12 +29,22 @@
   transition: all 0.3s ease;
 }
 
-.tabItem:hover {
+.tabItem:hover,
+.active {
   color: #8338ec;
 }
 
-.tabItem:hover .tabItemIcon path {
+.tabItem:hover .tabItemIcon path,
+.active .tabItemIcon path {
   fill: #8338ec;
+}
+
+.tabItemIcon {
+  transition: all 0.3s ease;
+}
+
+.active .tabItemIcon {
+  transform: rotate(180deg);
 }
 
 .tabItemIcon {

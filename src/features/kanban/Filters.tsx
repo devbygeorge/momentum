@@ -83,7 +83,9 @@ export default function Filters() {
         {["departments", "priorities", "employees"].map((type) => (
           <li
             key={type}
-            className={s.tabItem}
+            className={`${s.tabItem} ${
+              activeDropdown === type ? s.active : null
+            }`}
             onClick={() => toggleDropdown(type as DropdownType)}
           >
             {type === "departments"
@@ -91,7 +93,7 @@ export default function Filters() {
               : type === "priorities"
               ? "პრიორიტეტი"
               : "თანამშრომელი"}
-            <ArrowDownIcon />
+            <ArrowDownIcon class={s.tabItemIcon} />
           </li>
         ))}
       </ul>
