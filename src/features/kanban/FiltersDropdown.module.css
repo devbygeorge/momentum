@@ -1,6 +1,6 @@
 .dropdownWrapper {
-  background-color: #ffffff;
-  border: 1px solid #8338ec;
+  background-color: var(--white);
+  border: 1px solid var(--primary);
   border-radius: 10px;
 
   display: flex;
@@ -36,7 +36,7 @@
 
 .svgPurple rect,
 .svgPurple path {
-  stroke: #8338ec;
+  stroke: var(--primary);
 }
 
 .dropdownEmployeeWrapper {

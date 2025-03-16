@@ -3,7 +3,7 @@
   height: 135px;
   padding: 28px 20px;
   border-radius: 10px;
-  border: 1px solid #adb5bd;
+  border: 1px solid var(--gray-muted);
 
   font-size: 14px;
 
@@ -13,21 +13,21 @@
 
 .textarea::placeholder {
   font-weight: 350;
-  color: #898989;
+  color: var(--gray-light);
 }
 
 .light {
-  border-color: #dee2e6;
+  border-color: var(--gray-soft-border);
 
   font-weight: 300;
-  color: #0d0f10;
+  color: var(--text-dark);
 }
 
 .light::placeholder {
   font-weight: unset;
-  color: #898989;
+  color: var(--gray-light);
 }
 
 .error {
-  border-color: #fa4d4d;
+  border-color: var(--danger);
 }

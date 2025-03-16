@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: #fbf9ff;
+  background-color: var(--secondary-light);
   padding: 65px 55px 62px;
   border-radius: 4px;
   border: 0.3px solid rgba(221, 210, 255, 0.3);

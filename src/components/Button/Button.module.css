@@ -24,18 +24,18 @@
 
 /* Primary Button */
 .primary {
-  background-color: #8338ec;
-  color: white;
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .primary:hover {
-  background-color: #b588f4;
+  background-color: var(--primary-light);
 }
 
 /* Secondary Button */
 .secondary {
-  background-color: #8338ec;
-  color: white;
+  background-color: var(--primary);
+  color: var(--white);
 
   display: flex;
   justify-content: center;
@@ -50,15 +50,15 @@
 }
 
 .secondary:hover {
-  background-color: #b588f4;
+  background-color: var(--primary-light);
 }
 
 /* Outline Button */
 .outline {
-  background-color: #ffffff;
-  border: 1px solid #8338ec;
+  background-color: var(--white);
+  border: 1px solid var(--primary);
 }
 
 .outline:hover {
-  border-color: #b588f4;
+  border-color: var(--primary-light);
 }

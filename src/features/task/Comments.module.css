@@ -32,7 +32,7 @@
 
   font-size: 20px;
   font-weight: 500;
-  color: #000000;
+  color: var(--black);
 }
 
 .commentsCount {
@@ -40,12 +40,12 @@
   justify-content: center;
   align-items: center;
 
-  background-color: #8338ec;
+  background-color: var(--primary);
   border-radius: 30px;
 
   font-size: 14px;
   font-weight: 500;
-  color: #fff;
+  color: var(--white);
 
   height: 22px;
   min-width: 30px;
@@ -84,7 +84,7 @@
 
 .text {
   font-weight: 350;
-  color: #343a40;
+  color: var(--gray-dark);
   margin-bottom: 15px;
   max-width: 95%;
 }
@@ -96,7 +96,7 @@
 
   font-size: 12px;
   font-weight: 350;
-  color: #8338ec;
+  color: var(--primary);
   cursor: pointer;
   background-color: transparent;
 

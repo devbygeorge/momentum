@@ -9,13 +9,13 @@
 
   font-size: 14px;
   font-weight: 300;
-  color: #0d0f10;
+  color: var(--text-dark);
 }
 
 .input::placeholder {
-  color: #898989;
+  color: var(--gray-light);
 }
 
 .error {
-  border-color: #fa4d4d;
+  border-color: var(--danger);
 }

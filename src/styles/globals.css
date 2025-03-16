@@ -1,6 +1,31 @@
 :root {
-  --background: #ffffff;
-  --foreground: #212529;
+  /* Primary Colors */
+  --primary: #8338ec;
+  --primary-light: #b588f4;
+
+  /* Secondary Colors */
+  --secondary: #ff66a8;
+  --secondary-light: #fbf9ff;
+
+  /* Neutral Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --gray-darker: #212529;
+  --gray-dark: #343a40;
+  --gray-medium: #6c757d;
+  --gray-light: #898989;
+  --gray-lighter: #aaa;
+  --gray-border: #ced4da;
+  --gray-soft-border: #dee2e6; 
+  --gray-background: #f8f9fa;
+  --gray-muted: #adb5bd;
+
+  /* Alert & Status Colors */
+  --danger: #fa4d4d;
+  --success: #08a508;
+  --text-dark: #0d0f10;
+  --text-medium: #2a2a2a;
+  --text-light: #474747;
 }
 
 html,
@@ -13,8 +38,8 @@ body {
   font-family: var(--font-firago);
   font-size: 16px;
 
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--gray-darker);
+  background: var(--white);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -39,8 +64,8 @@ main {
 
 /* Custom Calendar Styles */
 .rdp-root {
-  --rdp-accent-color: #8338ec !important;
-  --rdp-accent-background-color: #8338ec !important;
+  --rdp-accent-color: var(--primary) !important;
+  --rdp-accent-background-color: var(--primary) !important;
   --rdp-day_button-border-radius: 2px !important;
   --rdp-day_button-width: 32px !important;
   --rdp-day_button-height: 32px !important;
@@ -54,7 +79,7 @@ main {
 
 .rdp-selected .rdp-day_button {
   background-color: var(--rdp-accent-color);
-  color: #fff;
+  color: var(--white);
   font-size: 14px;
   font-weight: 700;
 }
@@ -72,5 +97,5 @@ main {
 .rdp-month_caption {
   font-size: 13px !important;
   font-weight: 700 !important;
-  color: #000000;
+  color: var(--black);
 }

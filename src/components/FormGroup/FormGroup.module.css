@@ -4,14 +4,14 @@
 }
 
 .formLabel {
-  color: #343a40;
+  color: var(--gray-dark);
   margin-bottom: 6px;
 }
 
 .formSpan {
   font-size: 10px;
   font-weight: 350;
-  color: #6c757d;
+  color: var(--gray-medium);
 }
 
 .formMinLabel {
@@ -19,9 +19,9 @@
 }
 
 .error {
-  color: #fa4d4d;
+  color: var(--danger);
 }
 
 .success {
-  color: #08a508;
+  color: var(--success);
 }

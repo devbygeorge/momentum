@@ -16,8 +16,8 @@
   margin-bottom: 30px;
   min-height: 52px;
 
-  background-color: #aaa;
-  color: #fff;
+  background-color: var(--gray-lighter);
+  color: var(--white);
   border-radius: 10px;
 
   font-size: 20px;

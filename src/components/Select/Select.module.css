@@ -15,7 +15,7 @@
 
   font-size: 14px;
   font-weight: 300;
-  color: #0d0f10;
+  color: var(--text-dark);
 
   display: flex;
   justify-content: space-between;
@@ -49,9 +49,9 @@
   position: absolute;
   z-index: 2;
   width: 100%;
-  background: white;
+  background: var(--white);
 
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--gray-soft-border);
   border-top: none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -81,23 +81,23 @@
 
   font-size: 14px;
   font-weight: 300;
-  color: #0d0f10;
+  color: var(--text-dark);
   cursor: pointer;
 }
 
 .option:hover {
-  background: #f8f9fa;
+  background: var(--gray-background);
 }
 
 .addOption {
   gap: 8px;
   font-size: 16px;
   font-weight: 400;
-  color: #8338ec;
+  color: var(--primary);
 }
 
 .hasError {
-  border-color: #fa4d4d;
+  border-color: var(--danger);
 }
 
 .button svg {
