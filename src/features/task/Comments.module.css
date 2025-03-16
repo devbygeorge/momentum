@@ -99,6 +99,12 @@
   color: #8338ec;
   cursor: pointer;
   background-color: transparent;
+
+  transition: all 0.1s ease;
+}
+
+.replyButton:hover {
+  opacity: 0.8;
 }
 
 .replyButton svg {

@@ -60,6 +60,9 @@
   transform: translateY(-10px);
   visibility: hidden;
   transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s;
+
+  max-height: 185px;
+  overflow-y: auto;
 }
 
 .dropdownOpen {

@@ -37,9 +37,13 @@ export default function FiltersDropdown({
                 ? selected.has(item.id.toString())
                 : selected.includes(item.id.toString())
             ) ? (
-              <CheckboxActiveIcon />
+              <CheckboxActiveIcon
+                className={type !== "departments" ? s.svgPurple : ""}
+              />
             ) : (
-              <CheckboxDefaultIcon />
+              <CheckboxDefaultIcon
+                className={type !== "departments" ? s.svgPurple : ""}
+              />
             )}
 
             {type === "employees" ? (
