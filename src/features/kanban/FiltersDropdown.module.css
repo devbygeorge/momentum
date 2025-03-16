@@ -12,8 +12,8 @@
   z-index: 2;
 
   left: 0;
-  right: 0;
   top: 51px;
+  min-width: 645px;
 }
 
 .dropdownList {

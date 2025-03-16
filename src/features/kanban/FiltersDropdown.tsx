@@ -23,6 +23,7 @@ export default function FiltersDropdown({
   onSelect,
   onApply,
 }: FiltersDropdownProps) {
+  // Filters that are currently selected by the user
   return (
     <div className={s.dropdownWrapper}>
       <ul className={s.dropdownList}>

@@ -89,7 +89,7 @@
   align-self: flex-end;
 }
 
-.chosenWrapper {
+.chosenFilters {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -99,15 +99,13 @@
   color: #343a40;
 
   margin-top: 25px;
-  /* visibility: hidden; */
+  visibility: hidden;
+
+  min-height: 31px;
+  flex-wrap: wrap;
 }
 
-.chosenList {
-  display: flex;
-  gap: 8px;
-}
-
-.chosenItem {
+.filterBadge {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -118,12 +116,13 @@
   cursor: pointer;
 }
 
-.chosenItem svg {
+.filterBadge svg {
   width: 14px;
   height: 14px;
 }
 
-.chosenClear {
+.clearAll {
+  background-color: transparent;
   padding: 6px 10px;
   cursor: pointer;
 }
