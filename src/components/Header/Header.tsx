@@ -4,12 +4,13 @@ import Image from "next/image";
 import Button from "@/components/Button/Button";
 import PlusIcon from "@/assets/icons/plus.svg";
 import { useModal } from "@/context/ModalContext";
+import clsx from "clsx";
 
 export default function Header() {
   const { openModal } = useModal();
 
   return (
-    <header className={`${s.header} container`}>
+    <header className={clsx(s.header, "container")}>
       <div className={s.logo}>
         <Link href="/">
           <Image

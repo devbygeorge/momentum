@@ -3,6 +3,7 @@ import Image from "next/image";
 import s from "./AvatarUpload.module.css";
 import TrashIcon from "@/assets/icons/trash.svg";
 import GalleryIcon from "@/assets/icons/gallery.svg";
+import clsx from "clsx";
 
 type AvatarUploadProps = {
   setAvatarFile: (file: File | null) => void;
@@ -38,7 +39,11 @@ export default function AvatarUpload({
   };
 
   return (
-    <div className={`${s.avatarUpload} ${hasError ? s.hasError : null}`}>
+    <div
+      className={clsx(s.avatarUpload, {
+        [s.hasError]: hasError,
+      })}
+    >
       {avatar ? (
         <div className={s.previewWrapper}>
           <Image

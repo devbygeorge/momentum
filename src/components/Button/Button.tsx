@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import s from "./Button.module.css";
 import Link from "next/link";
 
@@ -20,9 +21,7 @@ export default function Button({
   href,
   className,
 }: ButtonProps) {
-  const buttonClass = [s.button, s[variant], className]
-    .filter(Boolean)
-    .join(" ");
+  const buttonClass = clsx(s.button, s[variant], className);
 
   // If `href` is provided, render a `Link` instead of a `button`
   if (href) {

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import s from "./FormGroup.module.css";
+import clsx from "clsx";
 
 type FormGroupProps = {
   label: string;
@@ -22,25 +23,22 @@ export default function FormGroup({
   minError,
   maxError,
 }: FormGroupProps) {
-  const FormGroupClass = [s.formGroup, className].filter(Boolean).join(" ");
+  const FormGroupClass = clsx(s.formGroup, className);
 
-  const minCondition =
-    validate && minError ? "error" : validate ? "success" : "";
-
-  const maxCondition =
-    validate && maxError ? "error" : validate ? "success" : "";
+  const minCondition = validate ? (minError ? "error" : "success") : "";
+  const maxCondition = validate ? (maxError ? "error" : "success") : "";
 
   return (
     <div className={FormGroupClass}>
       <label className={s.formLabel}>{label}</label>
       {children}
       {minText && (
-        <span className={`${s.formSpan} ${s.formMinLabel} ${s[minCondition]}`}>
+        <span className={clsx(s.formSpan, s.formMinLabel, s[minCondition])}>
           {minText}
         </span>
       )}
       {maxText && (
-        <span className={`${s.formSpan} ${s[maxCondition]}`}>{maxText}</span>
+        <span className={clsx(s.formSpan, s[maxCondition])}>{maxText}</span>
       )}
     </div>
   );

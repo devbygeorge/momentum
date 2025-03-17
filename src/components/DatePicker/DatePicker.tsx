@@ -3,6 +3,7 @@ import CalendarIconSmall from "@/assets/icons/calendar-small.svg";
 import s from "./DatePicker.module.css";
 import CustomCalendar from "./CustomCalendar";
 import { format } from "date-fns";
+import clsx from "clsx";
 
 type DatePickerProps = {
   selectedDate: Date;
@@ -43,7 +44,7 @@ export default function DatePicker({
     <div className={s.wrapper} ref={datePickerRef}>
       {/* Datepicker Input */}
       <div
-        className={`${s.inputWrapper} ${isOpen ? s.isOpen : ""}`}
+        className={clsx(s.inputWrapper, { [s.isOpen]: isOpen })}
         onClick={() => setIsOpen(!isOpen)}
       >
         <CalendarIconSmall />

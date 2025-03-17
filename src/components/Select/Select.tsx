@@ -5,6 +5,7 @@ import AddIcon from "@/assets/icons/add.svg";
 import { useModal } from "@/context/ModalContext";
 import Image from "next/image";
 import { SelectOption } from "@/types";
+import clsx from "clsx";
 
 type SelectProps = {
   mode?: "default" | "employee" | "priority";
@@ -46,14 +47,15 @@ export default function Select({
 
   return (
     <div
-      className={`${s.wrapper} ${isDisabled ? s.isDisabled : ""}`}
+      className={clsx(s.wrapper, { [s.isDisabled]: isDisabled })}
       ref={selectRef}
     >
       {/* Select Button */}
       <button
-        className={`${s.button} ${isOpen ? s.isButtonOpen : ""} ${
-          hasError ? s.hasError : ""
-        }`}
+        className={clsx(s.button, {
+          [s.isButtonOpen]: isOpen,
+          [s.hasError]: hasError,
+        })}
         onClick={() => setIsOpen(!isOpen)}
         type="button"
       >
@@ -96,13 +98,14 @@ export default function Select({
 
       {/* Dropdown List */}
       <ul
-        className={`${s.dropdown} ${isOpen ? s.dropdownOpen : ""} ${
-          hasError ? s.hasError : ""
-        }`}
+        className={clsx(s.dropdown, {
+          [s.dropdownOpen]: isOpen,
+          [s.hasError]: hasError,
+        })}
       >
         {mode === "employee" && (
           <li
-            className={`${s.option} ${s.addOption}`}
+            className={clsx(s.option, s.addOption)}
             onClick={() => openModal("employee")}
           >
             <AddIcon />

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import s from "./Input.module.css";
 
 type InputProps = {
@@ -10,7 +11,7 @@ type InputProps = {
 export default function Input({ type, value, onChange, hasError }: InputProps) {
   return (
     <input
-      className={`${s.input} ${hasError ? s.error : ""}`}
+      className={clsx(s.input, { [s.error]: hasError })}
       type={type}
       value={value}
       onChange={(e) => onChange(e.target.value)}

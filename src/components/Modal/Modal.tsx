@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import s from "./Modal.module.css";
 import CancelIcon from "@/assets/icons/cancel.svg";
+import clsx from "clsx";
 
 type ModalProps = {
   isOpen: boolean;
@@ -39,12 +40,12 @@ export default function Modal({
 
   return (
     <div
-      className={`${s.backdrop} ${!isOpen ? s.hidden : ""}`}
+      className={clsx(s.backdrop, { [s.hidden]: !isOpen })}
       onClick={onClose}
       {...(!isOpen && { inert: true })}
     >
       <div
-        className={`${s.modal} ${!isOpen ? s.hidden : ""}`}
+        className={clsx(s.modal, { [s.hidden]: !isOpen })}
         role="dialog"
         aria-labelledby="modal-title"
         onClick={(e) => e.stopPropagation()}
