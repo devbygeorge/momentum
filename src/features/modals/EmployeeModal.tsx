@@ -31,7 +31,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const [validateOnSubmit, setValidateOnSubmit] = useState(false);
-  
+
   const handleChange = (name: string, value: string) => {
     // Allow only Georgian (ა-ჰ) and English (A-Z, a-z) letters, plus spaces
     if (/^[a-zA-Zა-ჰ\s]*$/.test(value)) {
@@ -137,6 +137,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
             type="text"
             value={formData.name}
             onChange={(value) => handleChange("name", value)}
+            hasError={validationErrors.name}
           />
         </FormGroup>
 
@@ -152,6 +153,7 @@ export default function EmployeeModal({ isOpen, onClose }: EmployeeModalProps) {
             type="text"
             value={formData.surname}
             onChange={(value) => handleChange("surname", value)}
+            hasError={validationErrors.surname}
           />
         </FormGroup>
 
