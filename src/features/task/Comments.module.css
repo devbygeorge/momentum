@@ -87,6 +87,7 @@
   color: var(--gray-dark);
   margin-bottom: 15px;
   max-width: 95%;
+  word-break: break-word;
 }
 
 .replyButton {
