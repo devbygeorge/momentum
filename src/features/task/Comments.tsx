@@ -74,6 +74,7 @@ export default function Comments({ taskId }: CommentTypes) {
           placeholder="დაწერე კომენტარი"
           value={commentValue}
           onChange={setCommentValue}
+          hasBottomSpace
         />
         <Button
           className={s.commentButton}
@@ -139,6 +140,7 @@ export default function Comments({ taskId }: CommentTypes) {
                   placeholder="დაწერე კომენტარი"
                   value={replyValue}
                   onChange={setReplyValue}
+                  hasBottomSpace
                 />
                 <Button
                   className={s.commentButton}
