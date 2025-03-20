@@ -61,7 +61,6 @@ export default function Comments({ taskId }: CommentTypes) {
     addReply();
   };
 
-  const sortedComments = comments.slice().sort((a, b) => b.id - a.id);
   const commentsCount = comments.reduce(
     (total, comment) => total + 1 + (comment.sub_comments?.length || 0),
     0
@@ -91,7 +90,7 @@ export default function Comments({ taskId }: CommentTypes) {
       </h3>
 
       <ul className={s.commentsList}>
-        {sortedComments.map((comment) => (
+        {comments.map((comment) => (
           <li key={comment.id} className={s.commentItem}>
             <article className={s.commentBody}>
               <img
